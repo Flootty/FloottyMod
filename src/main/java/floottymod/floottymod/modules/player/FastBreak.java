@@ -18,7 +18,7 @@ public class FastBreak extends Hack implements UpdateListener, BlockBreakingProg
 	BoolSetting legit = new BoolSetting("Legit", false);
 	
 	public FastBreak() {
-		super("Fast Break", Category.PLAYER);
+		super("FastBreak", Category.PLAYER);
 		addSetting(legit);
 	}
 	

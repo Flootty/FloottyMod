@@ -11,7 +11,7 @@ public class NoKnockback extends Hack implements KnockbackListener {
 	SliderSetting hStrength = new SliderSetting("Horizontal", 1, 0, 1, .01);
 	
 	public NoKnockback() {
-		super("No knockback", Category.PLAYER);
+		super("NoKnockback", Category.PLAYER);
 		addSettings(vStrength, hStrength);
 	}
 	

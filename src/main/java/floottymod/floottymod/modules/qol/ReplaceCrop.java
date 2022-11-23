@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class ReplaceCrop extends Hack {
     public ReplaceCrop() {
-        super("Replace Crop", Category.QOL);
+        super("ReplaceCrop", Category.QOL);
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             if(!isEnabled()) return ActionResult.PASS;
             if (hitResult.getType() == HitResult.Type.BLOCK) {

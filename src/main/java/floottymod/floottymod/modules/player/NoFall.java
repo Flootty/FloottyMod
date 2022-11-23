@@ -8,7 +8,7 @@ import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.OnGroundOnly;
 
 public class NoFall extends Hack implements UpdateListener {
 	public NoFall() {
-		super("No Fall", Category.PLAYER);
+		super("NoFall", Category.PLAYER);
 	}
 	
 	@Override

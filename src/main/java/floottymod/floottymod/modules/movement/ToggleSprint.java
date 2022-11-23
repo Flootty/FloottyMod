@@ -7,7 +7,7 @@ import floottymod.floottymod.modules.Hack;
 
 public class ToggleSprint extends Hack implements UpdateListener {
 	public ToggleSprint() {
-		super("Toggle Sprint", Category.MOVEMENT);
+		super("ToggleSprint", Category.MOVEMENT);
 	}
 	
 	@Override
