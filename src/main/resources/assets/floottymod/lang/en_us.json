@@ -1,0 +1,33 @@
+{
+  "key.category.floottymod": "FloottyMod",
+  "key.category.floottymod.combat": "FloottyMod Combat",
+  "key.category.floottymod.macro": "FloottyMod Macro",
+  "key.category.floottymod.movement": "FloottyMod Movement",
+  "key.category.floottymod.player": "FloottyMod Player",
+  "key.category.floottymod.qol": "FloottyMod QOL",
+  "key.category.floottymod.render": "FloottyMod Render",
+
+  "key.floottymod.menu": "Menu",
+
+  "key.floottymod.clickaura": "ClickAura",
+  "key.floottymod.critical": "Critical",
+  "key.floottymod.killaura": "KillAura",
+
+  "key.floottymod.autofish": "AutoFish",
+
+  "key.floottymod.flight": "Flight",
+  "key.floottymod.teleport": "Teleport",
+  "key.floottymod.togglesprint": "ToggleSprint",
+
+  "key.floottymod.antihunger": "AntiHunger",
+  "key.floottymod.fastbreak": "FastBreak",
+  "key.floottymod.nightvision": "NightVision",
+  "key.floottymod.nofall": "NoFall",
+  "key.floottymod.noknockback": "NoKnockback",
+
+  "key.floottymod.replacecrop": "ReplaceCrop",
+
+  "key.floottymod.coordinates": "Coordinates",
+  "key.floottymod.hud": "Hud",
+  "key.floottymod.xray": "XRay"
+}

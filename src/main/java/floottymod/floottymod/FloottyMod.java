@@ -19,7 +19,7 @@ public enum FloottyMod {
     public static final IMinecraftClient IMC = (IMinecraftClient)MC;
 
     public static final String name = "FloottyMod";
-    public static final String version = "1.0";
+    public static final String version = "1.1";
 
     private EventManager eventManager;
     private HackList modList;
@@ -53,10 +53,6 @@ public enum FloottyMod {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public void onKeyPress(int key, int action) {
-        if(key == GLFW.GLFW_KEY_RIGHT_SHIFT) MC.setScreen(ClickGui.INSTANCE);
     }
 
     public RotationFaker getRotationFaker() {
