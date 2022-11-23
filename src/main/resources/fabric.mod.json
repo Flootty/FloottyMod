@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "floottymod",
+  "version": "${version}",
+  "name": "Flootty Mod",
+  "description": "Cheaters get banned!",
+  "authors": ["Flootty"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/FloottyMod/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "floottymod.floottymod.FloottyModInit"
+    ]
+  },
+  "mixins": [
+    "floottymod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric": "*",
+    "minecraft": "1.19.2"
+  }
+}

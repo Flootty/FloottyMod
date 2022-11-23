@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "floottymod.floottymod.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractBlockStateMixin",
+    "BlockEntityRenderDispatcherMixin",
+    "BlockMixin",
+    "BlockModelRendererMixin",
+    "ChunkOcclusionDataBuilderMixin",
+    "ClientConnectionInvoker",
+    "ClientConnectionMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "FishingBobberEntityMixin",
+    "FluidRendererMixin",
+    "GameRendererMixin",
+    "KeyboardMixin",
+    "MinecraftClientMixin",
+    "TerrainRendererContextMixin",
+    "IngameHudMixin",
+    "HungerManagerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
