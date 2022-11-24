@@ -4,12 +4,15 @@ import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.events.PostMotionListener;
 import floottymod.floottymod.events.PreMotionListener;
 import floottymod.floottymod.mixininterface.IMinecraftClient;
-import floottymod.floottymod.modules.HackList;
-import floottymod.floottymod.ui.screens.clickgui.ClickGui;
+import floottymod.floottymod.hack.HackList;
+import floottymod.floottymod.setting.SettingsFile;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import org.lwjgl.glfw.GLFW;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Environment(EnvType.CLIENT)
 public enum FloottyMod {
@@ -21,8 +24,10 @@ public enum FloottyMod {
     public static final String name = "FloottyMod";
     public static final String version = "1.1";
 
+    private Path floottyFolder;
+    private SettingsFile settingsFile;
     private EventManager eventManager;
-    private HackList modList;
+    private HackList hackList;
 
     public boolean enabled = true;
 
@@ -32,7 +37,15 @@ public enum FloottyMod {
         System.out.println("Loading " + name + " v" + version);
 
         eventManager = new EventManager(this);
-        modList = new HackList();
+
+        floottyFolder = createFloottyFolder();
+
+        Path enabledHacksFile = floottyFolder.resolve("enabled-hacks.json");
+        hackList = new HackList(enabledHacksFile);
+
+        Path settingsFile = floottyFolder.resolve("settings.json");
+        this.settingsFile = new SettingsFile(settingsFile, hackList);
+        this.settingsFile.load();
 
         rotationFaker = new RotationFaker();
         eventManager.add(PreMotionListener.class, rotationFaker);
@@ -44,7 +57,7 @@ public enum FloottyMod {
     }
 
     public HackList getHackList() {
-        return modList;
+        return hackList;
     }
 
     public boolean isEnabled() {
@@ -57,5 +70,22 @@ public enum FloottyMod {
 
     public RotationFaker getRotationFaker() {
         return rotationFaker;
+    }
+
+    public void saveSettings() {
+        settingsFile.save();
+    }
+
+    private Path createFloottyFolder() {
+        Path dotMinecraftFolder = MC.runDirectory.toPath().normalize();
+        Path floottyFolder = dotMinecraftFolder.resolve("FloottyMod");
+
+        try {
+            Files.createDirectories(floottyFolder);
+        } catch(IOException e) {
+            throw new RuntimeException("Couldn't create .minecraft/FloottyMod folder.", e);
+        }
+
+        return floottyFolder;
     }
 }

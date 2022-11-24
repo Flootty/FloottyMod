@@ -1,10 +1,10 @@
 package floottymod.floottymod.ui.screens.clickgui;
 
-import floottymod.floottymod.modules.Hack;
-import floottymod.floottymod.modules.settings.BoolSetting;
-import floottymod.floottymod.modules.settings.ModeSetting;
-import floottymod.floottymod.modules.settings.Setting;
-import floottymod.floottymod.modules.settings.SliderSetting;
+import floottymod.floottymod.hack.Hack;
+import floottymod.floottymod.settings.BoolSetting;
+import floottymod.floottymod.settings.ModeSetting;
+import floottymod.floottymod.setting.Setting;
+import floottymod.floottymod.settings.SliderSetting;
 import floottymod.floottymod.ui.screens.clickgui.setting.CheckBox;
 import floottymod.floottymod.ui.screens.clickgui.setting.Component;
 import floottymod.floottymod.ui.screens.clickgui.setting.ModeBox;
@@ -31,7 +31,7 @@ public class ModButton {
 		this.extended = false;
 		
 		int setOffset = parent.height;
-		for(Setting s : hack.getSettings()) {
+		for(Setting s : hack.getSettings().values()) {
 			if(s instanceof BoolSetting) {
 				components.add(new CheckBox(s, this, setOffset));
 			} else if(s instanceof ModeSetting) {

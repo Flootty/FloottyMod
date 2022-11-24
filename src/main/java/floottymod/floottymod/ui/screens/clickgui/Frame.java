@@ -1,8 +1,8 @@
 package floottymod.floottymod.ui.screens.clickgui;
 
 import floottymod.floottymod.FloottyMod;
-import floottymod.floottymod.modules.Category;
-import floottymod.floottymod.modules.Hack;
+import floottymod.floottymod.hack.Category;
+import floottymod.floottymod.hack.Hack;
 import floottymod.floottymod.ui.screens.clickgui.setting.Component;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;

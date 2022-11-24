@@ -1,6 +1,6 @@
 package floottymod.floottymod.ui.screens.clickgui;
 
-import floottymod.floottymod.modules.Category;
+import floottymod.floottymod.hack.Category;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;

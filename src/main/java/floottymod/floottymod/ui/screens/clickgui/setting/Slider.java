@@ -1,7 +1,7 @@
 package floottymod.floottymod.ui.screens.clickgui.setting;
 
-import floottymod.floottymod.modules.settings.Setting;
-import floottymod.floottymod.modules.settings.SliderSetting;
+import floottymod.floottymod.setting.Setting;
+import floottymod.floottymod.settings.SliderSetting;
 import floottymod.floottymod.ui.screens.clickgui.ModButton;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;

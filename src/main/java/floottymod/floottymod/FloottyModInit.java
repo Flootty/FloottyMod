@@ -1,6 +1,6 @@
 package floottymod.floottymod;
 
-import floottymod.floottymod.modules.KeybindHandler;
+import floottymod.floottymod.hacks.KeybindHandler;
 import net.fabricmc.api.ModInitializer;
 
 public class FloottyModInit implements ModInitializer {
