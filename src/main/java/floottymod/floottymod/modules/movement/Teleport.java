@@ -11,7 +11,7 @@ import net.minecraft.network.message.SentMessage;
 import net.minecraft.util.math.Vec3d;
 
 public class Teleport extends Hack {
-    SliderSetting range = new SliderSetting("Range", 0, 0, 8, .5);
+    SliderSetting range = new SliderSetting("Range", 0, 0, 10, .5);
 
     public Teleport() {
         super("Teleport", Category.MOVEMENT);
