@@ -11,7 +11,7 @@ public class NightVision extends Hack {
     public NightVision() {
         super("NightVision", Category.PLAYER);
 
-        night_vision = new StatusEffectInstance(StatusEffects.NIGHT_VISION, (int) Double.POSITIVE_INFINITY, 99, true, true);
+        night_vision = new StatusEffectInstance(StatusEffects.NIGHT_VISION, (int) Double.POSITIVE_INFINITY, 99, true, false);
         night_vision.setPermanent(true);
     }
 
