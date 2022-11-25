@@ -8,6 +8,7 @@ import net.minecraft.client.util.math.MatrixStack;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class Hud extends Hack implements IngameHudRenderListener {
     public Hud() {
@@ -35,8 +36,7 @@ public class Hud extends Hack implements IngameHudRenderListener {
         int sWidth = MC.getWindow().getScaledWidth();
 
         Collection<Hack> enabled = FloottyMod.INSTANCE.getHackList().getHacksEnabled();
-        enabled.stream().filter(h -> !(h instanceof Hud));
-        enabled.stream().sorted(Comparator.comparingInt(h -> MC.textRenderer.getWidth(((Hack) h).getName())).reversed());
+        enabled =  enabled.stream().sorted(Comparator.comparingInt(h -> MC.textRenderer.getWidth(((Hack) h).getName())).reversed()).collect(Collectors.toList());
 
         for(Hack h : enabled) {
             MC.textRenderer.draw(matrixStack, h.getName(), (sWidth - 4) - MC.textRenderer.getWidth(h.getName()), 10 + index * MC.textRenderer.fontHeight, -1);
