@@ -1,19 +1,28 @@
 package floottymod.floottymod.hacks.combat;
 
+import floottymod.floottymod.FloottyMod;
+import floottymod.floottymod.RotationFaker;
+import floottymod.floottymod.events.PacketInputListener;
 import floottymod.floottymod.events.PostMotionListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
+import floottymod.floottymod.settings.BoolSetting;
 import floottymod.floottymod.settings.ModeSetting;
 import floottymod.floottymod.settings.SliderSetting;
+import floottymod.floottymod.util.ChatUtils;
+import floottymod.floottymod.util.PacketUtils;
 import floottymod.floottymod.util.RotationUtils;
+import floottymod.floottymod.util.RotationUtils.Rotation;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
 import net.minecraft.util.Hand;
+import org.apache.logging.log4j.core.net.Priority;
 
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -21,11 +30,12 @@ import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class KillAura extends Hack implements UpdateListener, PostMotionListener {
+public class KillAura extends Hack implements UpdateListener, PostMotionListener, PacketInputListener {
 	public SliderSetting range = new SliderSetting("Range", 4, 0, 6, 0.1);
 	public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
 	public SliderSetting delay = new SliderSetting("Delay", 5, 0, 20, 1);
 	public ModeSetting priority = new ModeSetting("Priority", "Distance", "Distance", "Angle", "Health");
+	public BoolSetting rotate = new BoolSetting("Rotate Client", false);
 	
 	private Entity target;
 
@@ -33,7 +43,7 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 	
 	public KillAura() {
 		super("KillAura", Category.COMBAT);
-		addSettings(targetTypes, range, delay, priority);
+		addSettings(targetTypes, range, delay, priority, rotate);
 		target = null;
 	}
 	
@@ -70,8 +80,13 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 		else if(priority.isMode("Health")) stream = stream.sorted(Priority.HEALTH.comparator);
 		
 		target = stream.min(Comparator.comparingDouble(e -> e.squaredDistanceTo(MC.player))).orElse(null);
+
+		if(target != null) {
+			Rotation rotation = RotationUtils.getNeededRotations(target.getEyePos());
+			if(!rotate.isEnabled()) PacketUtils.sendRotation(rotation.getYaw(), rotation.getPitch());
+		}
 	}
-	
+
 	@Override
 	public void onPostMotion() {
 		if (target == null) return;
@@ -79,11 +94,17 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 		if (delay.getValueInt() == 0 && MC.player.getAttackCooldownProgress(0) < 1) return;
 
 		ClientPlayerEntity player = MC.player;
+		if(rotate.isEnabled()) FloottyMod.INSTANCE.getRotationFaker().faceVectorClient(target.getEyePos());
 		MC.interactionManager.attackEntity(player, target);
 		player.swingHand(Hand.MAIN_HAND);
 		tickTimer = 0;
 
 		target = null;
+	}
+
+	@Override
+	public void onReceivePacket(PacketInputEvent event) {
+		if(event.getPacket() instanceof PlayerPositionLookS2CPacket) ChatUtils.message("Received");
 	}
 
 	private enum Priority {
