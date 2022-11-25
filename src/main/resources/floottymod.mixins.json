@@ -20,7 +20,8 @@
     "MinecraftClientMixin",
     "TerrainRendererContextMixin",
     "IngameHudMixin",
-    "HungerManagerMixin"
+    "HungerManagerMixin",
+    "EntityMixin"
   ],
   "client": [
   ],
