@@ -30,7 +30,7 @@ import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class KillAura extends Hack implements UpdateListener, PostMotionListener, PacketInputListener {
+public class KillAura extends Hack implements UpdateListener, PostMotionListener {
 	public SliderSetting range = new SliderSetting("Range", 4, 0, 6, 0.1);
 	public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
 	public SliderSetting delay = new SliderSetting("Delay", 5, 0, 20, 1);
@@ -78,8 +78,6 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 		if(priority.isMode("Distance")) stream = stream.sorted(Priority.DISTANCE.comparator);
 		else if(priority.isMode("Angle")) stream = stream.sorted(Priority.ANGLE.comparator);
 		else if(priority.isMode("Health")) stream = stream.sorted(Priority.HEALTH.comparator);
-		
-		target = stream.min(Comparator.comparingDouble(e -> e.squaredDistanceTo(MC.player))).orElse(null);
 
 		if(target != null) {
 			Rotation rotation = RotationUtils.getNeededRotations(target.getEyePos());
@@ -100,11 +98,6 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 		tickTimer = 0;
 
 		target = null;
-	}
-
-	@Override
-	public void onReceivePacket(PacketInputEvent event) {
-		if(event.getPacket() instanceof PlayerPositionLookS2CPacket) ChatUtils.message("Received");
 	}
 
 	private enum Priority {
