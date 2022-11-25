@@ -48,7 +48,9 @@ public class CrystalAura extends Hack implements UpdateListener, PostMotionListe
 
     @Override
     public void onUpdate() {
+        double rangeSq = Math.pow(range.getValue(), 2);
         Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
+                .filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
                 .filter(e -> e instanceof EndCrystalEntity);
 
         if(priority.isMode("Distance")) target = stream.min((Priority.DISTANCE.comparator)).orElse(null);
