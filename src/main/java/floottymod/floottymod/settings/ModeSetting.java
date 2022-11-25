@@ -45,6 +45,7 @@ public class ModeSetting extends Setting {
 		if(index < modes.size() - 1) index++;
 		else index = 0;
 		mode = modes.get(index);
+		setMode(mode);
 	}
 	
 	public boolean isMode(String mode) {
@@ -54,7 +55,6 @@ public class ModeSetting extends Setting {
 	@Override
 	public void fromJson(JsonElement json) {
 		if(!JsonUtils.isNumber(json)) return;
-
 		setMode(modes.get(json.getAsInt()));
 	}
 
