@@ -2,7 +2,6 @@ package floottymod.floottymod.hacks.combat;
 
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.events.LeftClickListener;
-import floottymod.floottymod.events.PostMotionListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
 import floottymod.floottymod.settings.BoolSetting;
@@ -10,10 +9,8 @@ import floottymod.floottymod.settings.ModeSetting;
 import floottymod.floottymod.settings.SliderSetting;
 import floottymod.floottymod.util.PacketUtils;
 import floottymod.floottymod.util.RotationUtils;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
@@ -51,7 +48,7 @@ public class ClickAura extends Hack implements LeftClickListener {
 		double rangeSq = Math.pow(range.getValue(), 2);
 		Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
 			.filter(e -> !e.isRemoved())
-			.filter(e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0 || e instanceof EndCrystalEntity)
+			.filter(e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0)
 			.filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
 			.filter(e -> e != MC.player);
 			

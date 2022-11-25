@@ -67,7 +67,7 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 		double rangeSq = Math.pow(range.getValue(), 2);
 		Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
 			.filter(e -> !e.isRemoved())
-			.filter(e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0 || e instanceof EndCrystalEntity)
+			.filter(e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0)
 			.filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
 			.filter(e -> e != MC.player);
 			
