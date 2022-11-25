@@ -5,6 +5,7 @@ import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hacks.combat.ClickAura;
 import floottymod.floottymod.hacks.combat.Critical;
+import floottymod.floottymod.hacks.combat.CrystalAura;
 import floottymod.floottymod.hacks.combat.KillAura;
 import floottymod.floottymod.hacks.macro.AutoFish;
 import floottymod.floottymod.hacks.movement.Flight;
@@ -37,6 +38,7 @@ public class HackList implements UpdateListener {
     public final XRay xRay = new XRay();
     public final Coordinates coordinates = new Coordinates();
     public final Hud hud = new Hud();
+    public final CrystalAura crystalAura = new CrystalAura();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -61,6 +63,7 @@ public class HackList implements UpdateListener {
         addModule(xRay);
         addModule(coordinates);
         addModule(hud);
+        addModule(crystalAura);
 
         eventManager.add(UpdateListener.class, this);
     }
