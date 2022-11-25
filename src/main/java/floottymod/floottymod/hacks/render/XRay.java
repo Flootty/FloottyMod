@@ -5,7 +5,9 @@ import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
 import floottymod.floottymod.util.BlockUtils;
 import net.minecraft.block.Block;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.block.OreBlock;
+import net.minecraft.block.ShulkerBoxBlock;
 
 public class XRay extends Hack implements SetOpaqueCubeListener, GetAmbientOcclusionLightLevelListener, ShouldDrawSideListener, TesselateBlockListener, RenderBlockEntityListener {
     public XRay() {
@@ -58,6 +60,6 @@ public class XRay extends Hack implements SetOpaqueCubeListener, GetAmbientOcclu
     }
 
     private boolean isVisible(Block block) {
-        return (block instanceof OreBlock);
+        return (block instanceof OreBlock) || (block instanceof ChestBlock) || (block instanceof ShulkerBoxBlock);
     }
 }
