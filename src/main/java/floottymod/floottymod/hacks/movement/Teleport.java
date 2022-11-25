@@ -1,11 +1,14 @@
 package floottymod.floottymod.hacks.movement;
 
 import floottymod.floottymod.hack.Category;
+import floottymod.floottymod.hack.DontSaveState;
 import floottymod.floottymod.hack.Hack;
 import floottymod.floottymod.settings.SliderSetting;
 import floottymod.floottymod.util.PacketUtils;
+import floottymod.floottymod.util.RotationUtils;
 import net.minecraft.util.math.Vec3d;
 
+@DontSaveState
 public class Teleport extends Hack {
     SliderSetting range = new SliderSetting("Range", 0, 0, 10, .5);
 
@@ -16,7 +19,10 @@ public class Teleport extends Hack {
 
     @Override
     public void onEnable() {
-        Vec3d lookVec = MC.player.getRotationVector();
+        Vec3d lookVec;
+        if(MC.isInSingleplayer()) lookVec = MC.player.getRotationVector();
+        else lookVec = RotationUtils.getServerLookVec();
+
         double delta = calcDelta(lookVec);
 
         MC.player.addVelocity(15, 15, 15);
