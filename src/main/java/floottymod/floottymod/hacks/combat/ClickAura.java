@@ -58,9 +58,9 @@ public class ClickAura extends Hack implements LeftClickListener {
 		else if(targetTypes.isMode("Monsters")) stream = stream.filter(Predicate.not(e -> (e instanceof PlayerEntity))).filter(Predicate.not(e -> (e instanceof AnimalEntity)));
 		else if(targetTypes.isMode("Animals")) stream = stream.filter(e -> (e instanceof AnimalEntity));
 
-		if(priority.isMode("Distance")) stream = stream.sorted(Priority.DISTANCE.comparator);
-		else if(priority.isMode("Angle")) stream = stream.sorted(Priority.ANGLE.comparator);
-		else if(priority.isMode("Health")) stream = stream.sorted(Priority.HEALTH.comparator);
+		if(priority.isMode("Distance")) target = stream.min((Priority.DISTANCE.comparator)).orElse(null);
+		else if(priority.isMode("Angle")) target = stream.min((Priority.ANGLE.comparator)).orElse(null);
+		else if(priority.isMode("Health")) target = stream.min((Priority.HEALTH.comparator)).orElse(null);
 
 		if(target == null) return;
 

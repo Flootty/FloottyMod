@@ -51,8 +51,8 @@ public class CrystalAura extends Hack implements UpdateListener, PostMotionListe
         Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
                 .filter(e -> e instanceof EndCrystalEntity);
 
-        if(priority.isMode("Distance")) stream = stream.sorted(Priority.DISTANCE.comparator);
-        else if(priority.isMode("Angle")) stream = stream.sorted(Priority.ANGLE.comparator);
+        if(priority.isMode("Distance")) target = stream.min((Priority.DISTANCE.comparator)).orElse(null);
+        else if(priority.isMode("Angle")) target = stream.min((Priority.ANGLE.comparator)).orElse(null);
 
         if(target != null) {
             RotationUtils.Rotation rotation = RotationUtils.getNeededRotations(target.getEyePos());
