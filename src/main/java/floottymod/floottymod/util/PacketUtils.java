@@ -7,6 +7,8 @@ import net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.Vec3d;
 
+import static floottymod.floottymod.FloottyMod.MC;
+
 public class PacketUtils {
     public static void sendPosition(Vec3d pos) {
         MinecraftClient MC = MinecraftClient.getInstance();
@@ -18,5 +20,10 @@ public class PacketUtils {
         MinecraftClient MC = MinecraftClient.getInstance();
         ClientConnectionInvoker conn = (ClientConnectionInvoker) MC.player.networkHandler.getConnection();
         conn.sendIm(PlayerInteractEntityC2SPacket.attack(entity, MC.player.isSneaking()), null);
+    }
+
+    public static void sendRotation(float yaw, float pitch) {
+        ClientConnectionInvoker conn = (ClientConnectionInvoker) MC.player.networkHandler.getConnection();
+        conn.sendIm(new PlayerMoveC2SPacket.LookAndOnGround(yaw, pitch, MC.player.isOnGround()), null);
     }
 }
