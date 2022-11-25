@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ModeSetting extends Setting {
 	private String mode;
-	private List<String> modes; 
+	private List<String> modes;
 	private int index;
 	
 	public ModeSetting(String name, String defaultMode, String... modes) {
@@ -53,13 +53,13 @@ public class ModeSetting extends Setting {
 
 	@Override
 	public void fromJson(JsonElement json) {
-		if(!JsonUtils.isString(json)) return;
+		if(!JsonUtils.isNumber(json)) return;
 
-		setMode(json.getAsString());
+		setMode(modes.get(json.getAsInt()));
 	}
 
 	@Override
 	public JsonElement toJson() {
-		return new JsonPrimitive(mode.toString());
+		return new JsonPrimitive(modes.indexOf(mode));
 	}
 }

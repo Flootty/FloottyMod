@@ -8,6 +8,7 @@ import floottymod.floottymod.settings.ModeSetting;
 import floottymod.floottymod.settings.SliderSetting;
 import floottymod.floottymod.util.ChatUtils;
 import floottymod.floottymod.util.PacketUtils;
+import net.minecraft.network.message.SentMessage;
 
 //anti cheat version wierd when on ground
 
@@ -28,9 +29,7 @@ public class Flight extends Hack implements UpdateListener {
 		timer = 40;
 
 		EVENTS.add(UpdateListener.class, this);
-		if(type.isMode("Vanilla")) {
-			MC.player.getAbilities().allowFlying = true;
-		}
+		if(type.isMode("Vanilla")) MC.player.getAbilities().allowFlying = true;
 		super.onEnable();
 	}
 	

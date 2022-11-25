@@ -65,7 +65,6 @@ public class Hack {
     }
 
     public void onEnable() {
-
     }
 
     public void onDisable() {

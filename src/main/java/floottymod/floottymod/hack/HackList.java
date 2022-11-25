@@ -72,7 +72,6 @@ public class HackList implements UpdateListener {
     }
 
     public void saveEnabledHacks() {
-        ChatUtils.message("test");
         enabledHacksFile.save(this);
     }
 
