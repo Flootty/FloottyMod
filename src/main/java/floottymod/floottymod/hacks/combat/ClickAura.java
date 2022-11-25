@@ -1,11 +1,15 @@
 package floottymod.floottymod.hacks.combat;
 
+import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.events.LeftClickListener;
 import floottymod.floottymod.events.PostMotionListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
+import floottymod.floottymod.settings.BoolSetting;
 import floottymod.floottymod.settings.ModeSetting;
 import floottymod.floottymod.settings.SliderSetting;
+import floottymod.floottymod.util.PacketUtils;
+import floottymod.floottymod.util.RotationUtils;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -19,28 +23,27 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class ClickAura extends Hack implements LeftClickListener, PostMotionListener {
+public class ClickAura extends Hack implements LeftClickListener {
 	public SliderSetting range = new SliderSetting("Range", 4, 0, 6, 0.1);
 	public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
+	public BoolSetting rotate = new BoolSetting("Rotate Client", false);
 	
 	private Entity target;
 	
 	public ClickAura() {
 		super( "ClickAura", Category.COMBAT);
-		addSettings(targetTypes, range);
+		addSettings(targetTypes, range, rotate);
 		target = null;
 	}
 	
 	@Override
 	public void onEnable() {
 		EVENTS.add(LeftClickListener.class, this);
-		EVENTS.add(PostMotionListener.class, this);
 	}
 	
 	@Override
 	public void onDisable() {
 		EVENTS.remove(LeftClickListener.class, this);
-		EVENTS.remove(PostMotionListener.class, this);
 	}
 
 	@Override
@@ -59,19 +62,16 @@ public class ClickAura extends Hack implements LeftClickListener, PostMotionList
 		target = stream.min(Comparator.comparingDouble(e -> e.squaredDistanceTo(MC.player))).orElse(null);
 		
 		if(target == null) return;
+
+		if(target != null) {
+			RotationUtils.Rotation rotation = RotationUtils.getNeededRotations(target.getEyePos());
+			if(!rotate.isEnabled()) PacketUtils.sendRotation(rotation.getYaw(), rotation.getPitch());
+			if(rotate.isEnabled()) FloottyMod.INSTANCE.getRotationFaker().faceVectorClient(target.getEyePos());
+		}
 		
 		MC.interactionManager.attackEntity(MC.player, target);
 		MC.player.swingHand(Hand.MAIN_HAND);
-	}
-	
-	@Override
-	public void onPostMotion() {
-		if(target == null) return;
-	
-		ClientPlayerEntity player = MC.player;
-		MC.interactionManager.attackEntity(player, target);
-		player.swingHand(Hand.MAIN_HAND);
-		
+
 		target = null;
 	}
 }
