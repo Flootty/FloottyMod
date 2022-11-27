@@ -26,4 +26,9 @@ public class PacketUtils {
         ClientConnectionInvoker conn = (ClientConnectionInvoker) MC.player.networkHandler.getConnection();
         conn.sendIm(new PlayerMoveC2SPacket.LookAndOnGround(yaw, pitch, MC.player.isOnGround()), null);
     }
+
+    public static void sendOnGround(boolean onGround) {
+        ClientConnectionInvoker conn = (ClientConnectionInvoker) MC.player.networkHandler.getConnection();
+        conn.sendIm(new PlayerMoveC2SPacket.OnGroundOnly(onGround), null);
+    }
 }
