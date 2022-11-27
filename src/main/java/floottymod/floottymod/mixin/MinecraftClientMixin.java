@@ -3,6 +3,7 @@ package floottymod.floottymod.mixin;
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.events.LeftClickListener;
+import floottymod.floottymod.events.TickListener.TickEvent;
 import floottymod.floottymod.mixininterface.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -40,6 +41,13 @@ public class MinecraftClientMixin implements IMinecraftClient {
 	private MinecraftClientMixin(FloottyMod wurst, String string_1) {
 		super();
 	}
+
+	@Inject(at = @At("HEAD"), method = "tick", cancellable = true)
+	public void tick(CallbackInfo ci) {
+		TickEvent event = new TickEvent();
+		EventManager.fire(event);
+	}
+
 	
 	@Inject(at = @At(value = "HEAD"), method = "doAttack", cancellable = true)
 	private void onDoAttack(CallbackInfoReturnable<Boolean> cir){
