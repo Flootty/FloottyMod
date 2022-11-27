@@ -18,7 +18,6 @@ public class BoatFly extends Hack implements TickListener {
     private SliderSetting upwardSpeed = new SliderSetting("Upward", 0.3, 0, 5, 0.05);
 
     private int ticks;
-    private int INTERVAL = 40;
 
     public BoatFly() {
         super("BoatFly", Category.MOVEMENT);
@@ -28,7 +27,7 @@ public class BoatFly extends Hack implements TickListener {
     @Override
     public void onEnable() {
         EVENTS.add(TickListener.class, this);
-        ticks = 0;
+        ticks = 40;
     }
 
     @Override
@@ -51,9 +50,9 @@ public class BoatFly extends Hack implements TickListener {
         if(MC.options.jumpKey.isPressed()) motionY = upwardSpeed.getValue();
         else if(MC.options.sprintKey.isPressed()) motionY = -upwardSpeed.getValue();
 
-        if(ticks >= 40 && vehicle.getVelocity().getY() > 0.1) {
+        if(ticks <= 0 && vehicle.getVelocity().getY() > 0.1) {
             motionY = -.001;
-            ticks = 0;
+            ticks = 40;
         }
 
         if(MC.options.forwardKey.isPressed() && changeForwardSpeed.isEnabled()) {
