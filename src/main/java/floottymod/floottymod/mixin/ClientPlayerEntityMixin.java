@@ -1,7 +1,9 @@
 package floottymod.floottymod.mixin;
 
 import floottymod.floottymod.FloottyMod;
+import floottymod.floottymod.event.Event;
 import floottymod.floottymod.event.EventManager;
+import floottymod.floottymod.events.DamageListener.DamageEvent;
 import floottymod.floottymod.events.KnockbackListener.KnockbackEvent;
 import floottymod.floottymod.events.PostMotionListener.PostMotionEvent;
 import floottymod.floottymod.events.PreMotionListener.PreMotionEvent;
@@ -10,6 +12,7 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -34,6 +37,12 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 	@Inject(at = {@At("TAIL")}, method = {"sendMovementPackets()V"})
 	private void onSendMovementPacketsTAIL(CallbackInfo ci) {
 		EventManager.fire(PostMotionEvent.INSTANCE);
+	}
+
+	@Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
+	private void applyDamage(DamageSource source, float amount, CallbackInfo ci) {
+		DamageEvent event = new DamageEvent(source);
+		EventManager.fire(event);
 	}
 	
 	@Override

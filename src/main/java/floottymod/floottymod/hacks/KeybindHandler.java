@@ -45,6 +45,7 @@ public class KeybindHandler {
     public static final String KEY_COORDINATES = "key.floottymod.coordinates";
     public static final String KEY_HUD = "key.floottymod.hud";
     public static final String KEY_XRAY = "key.floottymod.xray";
+    public static final String KEY_FREECAM = "key.floottymod.freecam";
 
 
     public static KeyBinding menuKey = new KeyBinding(KEY_MENU, GLFW.GLFW_KEY_RIGHT_SHIFT, KEY_CATEGORY_FLOOTTYMOD);
@@ -72,6 +73,7 @@ public class KeybindHandler {
     public static KeyBinding coordinatesKey = new KeyBinding(KEY_COORDINATES, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding hudKey = new KeyBinding(KEY_HUD, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding xRayKey = new KeyBinding(KEY_XRAY, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
+    public static KeyBinding freeCamKey = new KeyBinding(KEY_FREECAM, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
 
     public static KeyBinding[] keyBindings = {
             menuKey,
@@ -91,7 +93,8 @@ public class KeybindHandler {
             replaceCropKey,
             coordinatesKey,
             hudKey,
-            xRayKey
+            xRayKey,
+            freeCamKey
     };
 
     public static void registerKeyInputs() {
@@ -121,6 +124,7 @@ public class KeybindHandler {
             if(coordinatesKey.wasPressed()) FloottyMod.INSTANCE.getHackList().coordinates.toggle();
             if(hudKey.wasPressed()) FloottyMod.INSTANCE.getHackList().hud.toggle();
             if(xRayKey.wasPressed()) FloottyMod.INSTANCE.getHackList().xRay.toggle();
+            if(freeCamKey.wasPressed()) FloottyMod.INSTANCE.getHackList().freeCam.toggle();
         });
     }
 

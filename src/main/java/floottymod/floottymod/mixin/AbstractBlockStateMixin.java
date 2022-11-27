@@ -1,6 +1,5 @@
 package floottymod.floottymod.mixin;
 
-import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.events.GetAmbientOcclusionLightLevelListener.GetAmbientOcclusionLightLevelEvent;
 import net.minecraft.block.AbstractBlock.AbstractBlockState;

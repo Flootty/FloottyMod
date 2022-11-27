@@ -21,7 +21,10 @@
     "TerrainRendererContextMixin",
     "IngameHudMixin",
     "HungerManagerMixin",
-    "EntityMixin"
+    "EntityMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "CameraMixin",
+    "MouseMixin"
   ],
   "client": [
   ],

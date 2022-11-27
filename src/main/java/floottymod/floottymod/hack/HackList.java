@@ -15,6 +15,7 @@ import floottymod.floottymod.hacks.movement.ToggleSprint;
 import floottymod.floottymod.hacks.player.*;
 import floottymod.floottymod.hacks.qol.ReplaceCrop;
 import floottymod.floottymod.hacks.render.Coordinates;
+import floottymod.floottymod.hacks.render.FreeCam;
 import floottymod.floottymod.hacks.render.Hud;
 import floottymod.floottymod.hacks.render.XRay;
 
@@ -40,6 +41,7 @@ public class HackList implements UpdateListener {
     public final Hud hud = new Hud();
     public final CrystalAura crystalAura = new CrystalAura();
     public final AntiAfk antiAfk = new AntiAfk();
+    public final FreeCam freeCam = new FreeCam();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -66,6 +68,7 @@ public class HackList implements UpdateListener {
         addModule(hud);
         addModule(crystalAura);
         addModule(antiAfk);
+        addModule(freeCam);
 
         eventManager.add(UpdateListener.class, this);
     }
