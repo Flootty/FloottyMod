@@ -5,6 +5,7 @@ import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
+import net.minecraft.util.math.Vec3d;
 
 public class ToggleSprint extends Hack implements TickListener {
 	public ToggleSprint() {
@@ -23,6 +24,11 @@ public class ToggleSprint extends Hack implements TickListener {
 
 	@Override
 	public void onTick() {
-		if(!MC.player.isBlocking() && !MC.player.isUsingItem() && !MC.player.isUsingSpyglass() && !MC.player.horizontalCollision) MC.player.setSprinting(true);
+		if(MC.player.isBlocking()) return;
+		if(MC.player.isUsingItem()) return;
+		if(MC.player.isUsingSpyglass()) return;
+		if(MC.player.horizontalCollision) return;
+		if(MC.currentScreen != null) return;
+		MC.player.setSprinting(true);
 	}
 }
