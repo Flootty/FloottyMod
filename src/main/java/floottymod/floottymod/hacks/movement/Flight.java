@@ -1,5 +1,6 @@
 package floottymod.floottymod.hacks.movement;
 
+import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
@@ -12,7 +13,7 @@ import net.minecraft.network.message.SentMessage;
 
 //anti cheat version wierd when on ground
 
-public class Flight extends Hack implements UpdateListener {
+public class Flight extends Hack implements TickListener {
 	public SliderSetting speed = new SliderSetting("Speed", 5, 0, 100, 0.1);
 	public ModeSetting type = new ModeSetting("Type", "Permanent", "Vanilla", "Permanent");
 	public BoolSetting antiCheat = new BoolSetting("Anticheat", false);
@@ -28,21 +29,21 @@ public class Flight extends Hack implements UpdateListener {
 	public void onEnable() {
 		timer = 40;
 
-		EVENTS.add(UpdateListener.class, this);
+		EVENTS.add(TickListener.class, this);
 		if(type.isMode("Vanilla")) MC.player.getAbilities().allowFlying = true;
 		super.onEnable();
 	}
 	
 	@Override
 	public void onDisable() {
-		EVENTS.remove(UpdateListener.class, this);
+		EVENTS.remove(TickListener.class, this);
 		MC.player.getAbilities().flying = false;
 		if(!MC.player.isCreative()) MC.player.getAbilities().allowFlying = false;
 		super.onDisable();
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onTick() {
 		if(timer <= 0) {
 			if(!MC.player.isOnGround() && antiCheat.isEnabled()) PacketUtils.sendPosition(MC.player.getPos().subtract(0, 0.0433D, 0));
 			timer = 40;

@@ -2,6 +2,7 @@ package floottymod.floottymod.hacks.macro;
 
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.events.PacketInputListener;
+import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.mixininterface.IFishingBobberEntity;
 import floottymod.floottymod.hack.Category;
@@ -18,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.sound.SoundEvents;
 
-public class AutoFish extends Hack implements UpdateListener, PacketInputListener {
+public class AutoFish extends Hack implements TickListener, PacketInputListener {
 	private SliderSetting validRange = new SliderSetting("Valid range", 1.5, .25, 8, 0.25);
 	
 	private int bestRodValue;
@@ -44,18 +45,18 @@ public class AutoFish extends Hack implements UpdateListener, PacketInputListene
 		scheduledWindowClick = -1;
 		wasOpenWater = true;
 		
-		EVENTS.add(UpdateListener.class, this);
+		EVENTS.add(TickListener.class, this);
 		EVENTS.add(PacketInputListener.class, this);
 	}
 	
 	@Override
 	public void onDisable() {
-		EVENTS.remove(UpdateListener.class, this);
+		EVENTS.remove(TickListener.class, this);
 		EVENTS.remove(PacketInputListener.class, this);
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onTick() {
 		if(reelInTimer > 0) reelInTimer--;
 		
 		ClientPlayerEntity player = MC.player;
@@ -89,15 +90,14 @@ public class AutoFish extends Hack implements UpdateListener, PacketInputListene
 		if(player.fishHook == null || player.fishHook.isRemoved()) {
 			rightClick();
 			castRodTimer = 15;
-			ChatUtils.message(String.valueOf(reelInTimer));
 			reelInTimer = 1200;
 		}
 		
-		/*if(reelInTimer == 0) {
+		if(reelInTimer == 0) {
 			reelInTimer--;
 			rightClick();
 			castRodTimer = 15;
-		}*/
+		}
 	}
 	
 	private void updateBestRod() {
@@ -169,8 +169,6 @@ public class AutoFish extends Hack implements UpdateListener, PacketInputListene
 			ChatUtils.warning("You are currently fishing in shallow water.");
 			ChatUtils.message("You can't get any treasure items while fishing like this.");
 		}
-		
-		ChatUtils.message(String.valueOf(castRodTimer));
 		
 		rightClick();
 		castRodTimer = 15;

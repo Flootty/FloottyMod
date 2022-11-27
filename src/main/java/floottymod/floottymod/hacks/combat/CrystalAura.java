@@ -2,6 +2,7 @@ package floottymod.floottymod.hacks.combat;
 
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.events.PostMotionListener;
+import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
@@ -21,7 +22,7 @@ import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class CrystalAura extends Hack implements UpdateListener, PostMotionListener {
+public class CrystalAura extends Hack implements TickListener, PostMotionListener {
     public SliderSetting range = new SliderSetting("Range", 4, 0, 6, 0.1);
     public ModeSetting priority = new ModeSetting("Priority", "Distance", "Distance", "Angle");
     public BoolSetting rotate = new BoolSetting("Rotate Client", false);
@@ -36,18 +37,18 @@ public class CrystalAura extends Hack implements UpdateListener, PostMotionListe
 
     @Override
     public void onEnable() {
-        EVENTS.add(UpdateListener.class, this);
+        EVENTS.add(TickListener.class, this);
         EVENTS.add(PostMotionListener.class, this);
     }
 
     @Override
     public void onDisable() {
-        EVENTS.remove(UpdateListener.class, this);
+        EVENTS.remove(TickListener.class, this);
         EVENTS.remove(PostMotionListener.class, this);
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         double rangeSq = Math.pow(range.getValue(), 2);
         Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
                 .filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)

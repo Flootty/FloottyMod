@@ -3,6 +3,7 @@ package floottymod.floottymod.hacks.player;
 
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.events.BlockBreakingProgressListener;
+import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.mixininterface.IClientPlayerInteractionManager;
 import floottymod.floottymod.hack.Category;
@@ -14,7 +15,7 @@ import net.minecraft.util.math.Direction;
 
 //long delay
 
-public class FastBreak extends Hack implements UpdateListener, BlockBreakingProgressListener {
+public class FastBreak extends Hack implements TickListener, BlockBreakingProgressListener {
 	BoolSetting legit = new BoolSetting("Legit", false);
 	
 	public FastBreak() {
@@ -24,18 +25,18 @@ public class FastBreak extends Hack implements UpdateListener, BlockBreakingProg
 	
 	@Override
 	public void onEnable() {
-		EVENTS.add(UpdateListener.class, this);
+		EVENTS.add(TickListener.class, this);
 		EVENTS.add(BlockBreakingProgressListener.class, this);
 	}
 	
 	@Override
 	public void onDisable() {
-		EVENTS.remove(UpdateListener.class, this);
+		EVENTS.remove(TickListener.class, this);
 		EVENTS.remove(BlockBreakingProgressListener.class, this);
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onTick() {
 		FloottyMod.IMC.getInteractionManager().setBlockHitDelay(0);
 	}
 	

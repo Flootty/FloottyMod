@@ -4,6 +4,7 @@ import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.RotationFaker;
 import floottymod.floottymod.events.PacketInputListener;
 import floottymod.floottymod.events.PostMotionListener;
+import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
@@ -30,7 +31,7 @@ import java.util.function.ToDoubleFunction;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class KillAura extends Hack implements UpdateListener, PostMotionListener {
+public class KillAura extends Hack implements TickListener, PostMotionListener {
 	public SliderSetting range = new SliderSetting("Range", 4, 0, 6, 0.1);
 	public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
 	public SliderSetting delay = new SliderSetting("Delay", 5, 0, 20, 1);
@@ -49,19 +50,19 @@ public class KillAura extends Hack implements UpdateListener, PostMotionListener
 	
 	@Override
 	public void onEnable() {
-		EVENTS.add(UpdateListener.class, this);
+		EVENTS.add(TickListener.class, this);
 		EVENTS.add(PostMotionListener.class, this);
 		tickTimer = 0;
 	}
 		
 	@Override
 	public void onDisable() {
-		EVENTS.remove(UpdateListener.class, this);
+		EVENTS.remove(TickListener.class, this);
 		EVENTS.remove(PostMotionListener.class, this);
 	}
 
 	@Override
-	public void onUpdate() {
+	public void onTick() {
 		tickTimer++;
 
 		double rangeSq = Math.pow(range.getValue(), 2);

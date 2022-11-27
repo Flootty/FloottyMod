@@ -1,13 +1,14 @@
 package floottymod.floottymod.hacks.macro;
 
+import floottymod.floottymod.events.TickListener;
 import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hack.Category;
 import floottymod.floottymod.hack.Hack;
 import floottymod.floottymod.util.ChatUtils;
 import net.minecraft.network.message.SentMessage;
 
-public class AntiAfk extends Hack implements UpdateListener {
-    private int PERIOD = 4000;
+public class AntiAfk extends Hack implements TickListener {
+    private int PERIOD = 40;
     private int ticks = 0;
     private int dir = 0;
 
@@ -17,18 +18,18 @@ public class AntiAfk extends Hack implements UpdateListener {
 
     @Override
     public void onEnable() {
-        EVENTS.add(UpdateListener.class, this);
+        EVENTS.add(TickListener.class, this);
         ticks = 0;
         dir = 0;
     }
 
     @Override
     public void onDisable() {
-        EVENTS.remove(UpdateListener.class, this);
+        EVENTS.remove(TickListener.class, this);
     }
 
     @Override
-    public void onUpdate() {
+    public void onTick() {
         ticks++;
         if(ticks >= PERIOD) {
             if(dir == 0) MC.player.addVelocity(.5, 0, 0);

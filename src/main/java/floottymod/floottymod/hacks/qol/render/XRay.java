@@ -1,4 +1,4 @@
-package floottymod.floottymod.hacks.render;
+package floottymod.floottymod.hacks.qol.render;
 
 import floottymod.floottymod.events.*;
 import floottymod.floottymod.hack.Category;
