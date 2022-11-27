@@ -14,9 +14,9 @@ import floottymod.floottymod.hacks.movement.Teleport;
 import floottymod.floottymod.hacks.movement.ToggleSprint;
 import floottymod.floottymod.hacks.player.*;
 import floottymod.floottymod.hacks.qol.ReplaceCrop;
-import floottymod.floottymod.hacks.qol.render.Coordinates;
-import floottymod.floottymod.hacks.qol.render.Hud;
-import floottymod.floottymod.hacks.qol.render.XRay;
+import floottymod.floottymod.hacks.render.Coordinates;
+import floottymod.floottymod.hacks.render.Hud;
+import floottymod.floottymod.hacks.render.XRay;
 
 import java.nio.file.Path;
 import java.util.*;

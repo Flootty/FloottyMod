@@ -1,4 +1,4 @@
-package floottymod.floottymod.hacks.qol.render;
+package floottymod.floottymod.hacks.render;
 
 import floottymod.floottymod.events.IngameHudRenderListener;
 import floottymod.floottymod.hack.Category;
