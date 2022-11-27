@@ -44,6 +44,8 @@ public class Flight extends Hack implements TickListener {
 
 	@Override
 	public void onTick() {
+		if(MC.player == null) return;
+
 		if(timer <= 0) {
 			if(!MC.player.isOnGround() && antiCheat.isEnabled()) PacketUtils.sendPosition(MC.player.getPos().subtract(0, 0.0433D, 0));
 			timer = 40;

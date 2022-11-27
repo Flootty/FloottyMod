@@ -30,6 +30,8 @@ public class AntiAfk extends Hack implements TickListener {
 
     @Override
     public void onTick() {
+        if(MC.player == null) return;
+
         ticks++;
         if(ticks >= PERIOD) {
             if(dir == 0) MC.player.addVelocity(.5, 0, 0);

@@ -57,6 +57,8 @@ public class AutoFish extends Hack implements TickListener, PacketInputListener 
 
 	@Override
 	public void onTick() {
+		if(MC.player == null) return;
+
 		if(reelInTimer > 0) reelInTimer--;
 		
 		ClientPlayerEntity player = MC.player;

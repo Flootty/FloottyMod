@@ -24,6 +24,8 @@ public class ToggleSprint extends Hack implements TickListener {
 
 	@Override
 	public void onTick() {
+		if(MC.player == null) return;
+
 		if(MC.player.isBlocking()) return;
 		if(MC.player.isUsingItem()) return;
 		if(MC.player.isUsingSpyglass()) return;

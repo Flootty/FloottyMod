@@ -29,6 +29,8 @@ public class Critical extends Hack implements LeftClickListener {
 	
 	@Override
 	public void onLeftClick(LeftClickEvent event) {
+		if(MC.player == null) return;
+
 		System.out.println("test");
 		if(MC.crosshairTarget == null || MC.crosshairTarget.getType() != HitResult.Type.ENTITY || !(((EntityHitResult)MC.crosshairTarget).getEntity() instanceof LivingEntity)) return;
 		doCritical();

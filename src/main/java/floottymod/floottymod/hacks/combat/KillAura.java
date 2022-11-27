@@ -63,6 +63,8 @@ public class KillAura extends Hack implements TickListener, PostMotionListener {
 
 	@Override
 	public void onTick() {
+		if(MC.player == null) return;
+
 		tickTimer++;
 
 		double rangeSq = Math.pow(range.getValue(), 2);

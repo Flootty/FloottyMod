@@ -47,6 +47,8 @@ public class ClickAura extends Hack implements LeftClickListener {
 
 	@Override
 	public void onLeftClick(LeftClickEvent event) {
+		if(MC.player == null) return;
+
 		double rangeSq = Math.pow(range.getValue(), 2);
 		Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
 			.filter(e -> !e.isRemoved())

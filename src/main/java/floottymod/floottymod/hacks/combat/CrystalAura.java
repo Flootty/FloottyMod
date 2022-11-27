@@ -49,6 +49,8 @@ public class CrystalAura extends Hack implements TickListener, PostMotionListene
 
     @Override
     public void onTick() {
+        if(MC.player == null) return;
+
         double rangeSq = Math.pow(range.getValue(), 2);
         Stream<Entity> stream = StreamSupport.stream(MC.world.getEntities().spliterator(), true)
                 .filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
