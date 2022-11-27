@@ -29,6 +29,8 @@ public class NoFall extends Hack implements TickListener {
 
 	@Override
 	public void onTick() {
+		if(MC.player == null) return;
+
 		if(MC.player.fallDistance <= (MC.player.isFallFlying() ? 1 : 2)) return;
 		if(MC.player.isFallFlying() && MC.player.isSneaking() && !isFallingFastEnoughToCauseDamage(MC.player)) return;
 		
