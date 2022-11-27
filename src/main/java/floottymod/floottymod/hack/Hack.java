@@ -3,6 +3,7 @@ package floottymod.floottymod.hack;
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.setting.Setting;
+import floottymod.floottymod.util.ChatUtils;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.*;
@@ -52,6 +53,7 @@ public class Hack {
         this.enabled = enabled;
         if(enabled) onEnable();
         else onDisable();
+        ChatUtils.message(name + (enabled ? " \u00a7aOn" : " \u00a7cOff"));
 
         if(stateSaved) FloottyMod.INSTANCE.getHackList().saveEnabledHacks();
     }
