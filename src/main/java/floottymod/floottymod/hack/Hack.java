@@ -49,11 +49,12 @@ public class Hack {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(boolean enabled, boolean silent) {
         this.enabled = enabled;
         if(enabled) onEnable();
         else onDisable();
-        ChatUtils.message(name + (enabled ? " \u00a7aOn" : " \u00a7cOff"));
+
+        if(!silent)ChatUtils.message(name + (enabled ? " \u00a7aOn" : " \u00a7cOff"));
 
         if(stateSaved) FloottyMod.INSTANCE.getHackList().saveEnabledHacks();
     }
@@ -62,8 +63,8 @@ public class Hack {
         return category;
     }
 
-    public void toggle() {
-        setEnabled(!enabled);
+    public void toggle(boolean silent) {
+        setEnabled(!enabled, silent);
     }
 
     public void onEnable() {

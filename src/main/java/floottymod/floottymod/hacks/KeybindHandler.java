@@ -101,30 +101,30 @@ public class KeybindHandler {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if(menuKey.wasPressed()) FloottyMod.INSTANCE.MC.setScreen(ClickGui.INSTANCE);
 
-            if(clickAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().clickAura.toggle();
-            if(criticalKey.wasPressed()) FloottyMod.INSTANCE.getHackList().critical.toggle();
-            if(killAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().killAura.toggle();
-            if(crystalAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().crystalAura.toggle();
+            if(clickAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().clickAura.toggle(false);
+            if(criticalKey.wasPressed()) FloottyMod.INSTANCE.getHackList().critical.toggle(false);
+            if(killAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().killAura.toggle(false);
+            if(crystalAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().crystalAura.toggle(false);
 
 
-            if(autoFishKey.wasPressed()) FloottyMod.INSTANCE.getHackList().autoFish.toggle();
+            if(autoFishKey.wasPressed()) FloottyMod.INSTANCE.getHackList().autoFish.toggle(false);
 
-            if(flightKey.wasPressed()) FloottyMod.INSTANCE.getHackList().flight.toggle();
-            if(teleportKey.wasPressed()) FloottyMod.INSTANCE.getHackList().teleport.toggle();
-            if(toggleSprintKey.wasPressed()) FloottyMod.INSTANCE.getHackList().toggleSprint.toggle();
+            if(flightKey.wasPressed()) FloottyMod.INSTANCE.getHackList().flight.toggle(false);
+            if(teleportKey.wasPressed()) FloottyMod.INSTANCE.getHackList().teleport.toggle(false);
+            if(toggleSprintKey.wasPressed()) FloottyMod.INSTANCE.getHackList().toggleSprint.toggle(false);
 
-            if(antiHungerKey.wasPressed()) FloottyMod.INSTANCE.getHackList().antiHunger.toggle();
-            if(fastBreakKey.wasPressed()) FloottyMod.INSTANCE.getHackList().fastBreak.toggle();
-            if(nightVisionKey.wasPressed()) FloottyMod.INSTANCE.getHackList().nightVision.toggle();
-            if(noFallKey.wasPressed()) FloottyMod.INSTANCE.getHackList().noFall.toggle();
-            if(noKnockbackKey.wasPressed()) FloottyMod.INSTANCE.getHackList().noKnockback.toggle();
+            if(antiHungerKey.wasPressed()) FloottyMod.INSTANCE.getHackList().antiHunger.toggle(false);
+            if(fastBreakKey.wasPressed()) FloottyMod.INSTANCE.getHackList().fastBreak.toggle(false);
+            if(nightVisionKey.wasPressed()) FloottyMod.INSTANCE.getHackList().nightVision.toggle(false);
+            if(noFallKey.wasPressed()) FloottyMod.INSTANCE.getHackList().noFall.toggle(false);
+            if(noKnockbackKey.wasPressed()) FloottyMod.INSTANCE.getHackList().noKnockback.toggle(false);
 
-            if(replaceCropKey.wasPressed()) FloottyMod.INSTANCE.getHackList().replaceCrop.toggle();
+            if(replaceCropKey.wasPressed()) FloottyMod.INSTANCE.getHackList().replaceCrop.toggle(false);
 
-            if(coordinatesKey.wasPressed()) FloottyMod.INSTANCE.getHackList().coordinates.toggle();
-            if(hudKey.wasPressed()) FloottyMod.INSTANCE.getHackList().hud.toggle();
-            if(xRayKey.wasPressed()) FloottyMod.INSTANCE.getHackList().xRay.toggle();
-            if(freeCamKey.wasPressed()) FloottyMod.INSTANCE.getHackList().freeCam.toggle();
+            if(coordinatesKey.wasPressed()) FloottyMod.INSTANCE.getHackList().coordinates.toggle(false);
+            if(hudKey.wasPressed()) FloottyMod.INSTANCE.getHackList().hud.toggle(false);
+            if(xRayKey.wasPressed()) FloottyMod.INSTANCE.getHackList().xRay.toggle(false);
+            if(freeCamKey.wasPressed()) FloottyMod.INSTANCE.getHackList().freeCam.toggle(false);
         });
     }
 

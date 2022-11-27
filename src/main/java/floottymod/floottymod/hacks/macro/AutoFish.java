@@ -73,7 +73,7 @@ public class AutoFish extends Hack implements TickListener, PacketInputListener 
 		
 		if(bestRodSlot == -1) {
 			ChatUtils.message("AutoFish has ran out of fishing rods.");
-			setEnabled(false);
+			setEnabled(false, false);
 			return;
 		}
 		

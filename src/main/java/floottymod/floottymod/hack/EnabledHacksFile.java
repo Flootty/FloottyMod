@@ -38,13 +38,13 @@ public class EnabledHacksFile {
         try {
             disableSaving = true;
 
-            for(Hack hack : hackList.getAllHacks()) hack.setEnabled(false);
+            for(Hack hack : hackList.getAllHacks()) hack.setEnabled(false, true);
 
             for(String name : wson.getAllStrings()) {
                 Hack hack = hackList.getHackByName(name);
                 if(hack == null || !hack.isStateSaved()) continue;
 
-                hack.setEnabled(true);
+                hack.setEnabled(true, true);
             }
 
         }finally {

@@ -53,7 +53,7 @@ public class ModButton {
 	
 	public void mouseClicked(double mouseX, double mouseY, int button) {
 		if(isHovered(mouseX, mouseY)) {
-			if(button == 0) hack.toggle();
+			if(button == 0) hack.toggle(false);
 			else if(button == 1) {
 				extended = !extended;
 				parent.updateButtons();

@@ -260,7 +260,7 @@ public class FreeCam extends Hack implements TickListener, PacketOutputListener,
     public void onReceivePacket(PacketInputEvent event) {
         if(event.getPacket() instanceof DeathMessageS2CPacket packet) {
             Entity entity = MC.world.getEntityById(packet.getEntityId());
-            if (entity == MC.player && toggleOnDeath.isEnabled()) toggle();
+            if (entity == MC.player && toggleOnDeath.isEnabled()) toggle(false);
         }
     }
 
@@ -269,7 +269,7 @@ public class FreeCam extends Hack implements TickListener, PacketOutputListener,
         if(event.source.getSource().getUuid() == null) return;
         if(!event.source.getSource().getUuid().equals(MC.player.getUuid())) return;
 
-        if(toggleOnDamage.isEnabled()) toggle();
+        if(toggleOnDamage.isEnabled()) toggle(false);
     }
 
     @Override
