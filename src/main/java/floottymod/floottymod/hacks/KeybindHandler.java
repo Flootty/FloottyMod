@@ -27,6 +27,7 @@ public class KeybindHandler {
     public static final String KEY_CRITICAL = "key.floottymod.critical";
     public static final String KEY_KILLAURA = "key.floottymod.killaura";
     public static final String KEY_CRYSTALAURA = "key.floottymod.crystalaura";
+    public static final String KEY_TPAURA = "key.floottymod.tpaura";
 
     public static final String KEY_AUTOFISH = "key.floottymod.autofish";
 
@@ -56,7 +57,7 @@ public class KeybindHandler {
     public static KeyBinding criticalKey = new KeyBinding(KEY_CRITICAL, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_COMBAT);
     public static KeyBinding killAuraKey = new KeyBinding(KEY_KILLAURA, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_COMBAT);
     public static KeyBinding crystalAuraKey = new KeyBinding(KEY_CRYSTALAURA, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_COMBAT);
-
+    public static KeyBinding tpAuraKey = new KeyBinding(KEY_TPAURA, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_COMBAT);
 
     public static KeyBinding autoFishKey = new KeyBinding(KEY_AUTOFISH, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MACRO);
 
@@ -85,6 +86,7 @@ public class KeybindHandler {
             criticalKey,
             killAuraKey,
             crystalAuraKey,
+            tpAuraKey,
 
             autoFishKey,
 
@@ -115,6 +117,7 @@ public class KeybindHandler {
             if(criticalKey.wasPressed()) FloottyMod.INSTANCE.getHackList().critical.toggle(false);
             if(killAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().killAura.toggle(false);
             if(crystalAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().crystalAura.toggle(false);
+            if(tpAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().tpAura.toggle(false);
 
             if(autoFishKey.wasPressed()) FloottyMod.INSTANCE.getHackList().autoFish.toggle(false);
 

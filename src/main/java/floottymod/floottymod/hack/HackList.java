@@ -3,10 +3,7 @@ package floottymod.floottymod.hack;
 import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.events.UpdateListener;
-import floottymod.floottymod.hacks.combat.ClickAura;
-import floottymod.floottymod.hacks.combat.Critical;
-import floottymod.floottymod.hacks.combat.CrystalAura;
-import floottymod.floottymod.hacks.combat.KillAura;
+import floottymod.floottymod.hacks.combat.*;
 import floottymod.floottymod.hacks.macro.AntiAfk;
 import floottymod.floottymod.hacks.macro.AutoFish;
 import floottymod.floottymod.hacks.movement.BoatFly;
@@ -44,6 +41,7 @@ public class HackList implements UpdateListener {
     public final AntiAfk antiAfk = new AntiAfk();
     public final FreeCam freeCam = new FreeCam();
     public final BoatFly boatFly = new BoatFly();
+    public final TpAura tpAura = new TpAura();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -72,6 +70,7 @@ public class HackList implements UpdateListener {
         addModule(antiAfk);
         addModule(freeCam);
         addModule(boatFly);
+        addModule(tpAura);
 
         eventManager.add(UpdateListener.class, this);
     }
