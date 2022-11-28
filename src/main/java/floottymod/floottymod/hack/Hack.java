@@ -20,6 +20,8 @@ public class Hack {
 
     private final LinkedHashMap<String, Setting> settings = new LinkedHashMap<>();
 
+    public boolean silent = false;
+
     public Hack(String name, Category category) {
         this.name = name;
         this.category = category;

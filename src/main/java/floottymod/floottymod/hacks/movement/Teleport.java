@@ -15,6 +15,7 @@ public class Teleport extends Hack {
     public Teleport() {
         super("Teleport", Category.MOVEMENT);
         addSettings(range);
+        silent = true;
     }
 
     @Override
