@@ -42,6 +42,7 @@ public class HackList implements UpdateListener {
     public final FreeCam freeCam = new FreeCam();
     public final BoatFly boatFly = new BoatFly();
     public final TpAura tpAura = new TpAura();
+    public final Reach reach = new Reach();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -71,6 +72,7 @@ public class HackList implements UpdateListener {
         addModule(freeCam);
         addModule(boatFly);
         addModule(tpAura);
+        addModule(reach);
 
         eventManager.add(UpdateListener.class, this);
     }
