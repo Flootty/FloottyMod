@@ -33,6 +33,8 @@ public class KeybindHandler {
     public static final String KEY_FLIGHT = "key.floottymod.flight";
     public static final String KEY_TELEPORT = "key.floottymod.teleport";
     public static final String KEY_TOGGLESPRINT = "key.floottymod.togglesprint";
+    public static final String KEY_BOATFLY = "key.floottymod.boatfly";
+
 
     public static final String KEY_ANTIHUNGER = "key.floottymod.antihunger";
     public static final String KEY_FASTBREAK = "key.floottymod.fastbreak";
@@ -61,6 +63,7 @@ public class KeybindHandler {
     public static KeyBinding flightKey = new KeyBinding(KEY_FLIGHT, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MOVEMENT);
     public static KeyBinding teleportKey = new KeyBinding(KEY_TELEPORT, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MOVEMENT);
     public static KeyBinding toggleSprintKey = new KeyBinding(KEY_TOGGLESPRINT, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MOVEMENT);
+    public static KeyBinding boatFlyKey = new KeyBinding(KEY_BOATFLY, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MOVEMENT);
 
     public static KeyBinding antiHungerKey = new KeyBinding(KEY_ANTIHUNGER, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_PLAYER);
     public static KeyBinding fastBreakKey = new KeyBinding(KEY_FASTBREAK, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_PLAYER);
@@ -77,20 +80,27 @@ public class KeybindHandler {
 
     public static KeyBinding[] keyBindings = {
             menuKey,
+
             clickAuraKey,
             criticalKey,
             killAuraKey,
             crystalAuraKey,
+
             autoFishKey,
+
             flightKey,
             teleportKey,
             toggleSprintKey,
+            boatFlyKey,
+
             antiHungerKey,
             fastBreakKey,
             nightVisionKey,
             noFallKey,
             noKnockbackKey,
+
             replaceCropKey,
+
             coordinatesKey,
             hudKey,
             xRayKey,
@@ -106,12 +116,12 @@ public class KeybindHandler {
             if(killAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().killAura.toggle(false);
             if(crystalAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().crystalAura.toggle(false);
 
-
             if(autoFishKey.wasPressed()) FloottyMod.INSTANCE.getHackList().autoFish.toggle(false);
 
             if(flightKey.wasPressed()) FloottyMod.INSTANCE.getHackList().flight.toggle(false);
             if(teleportKey.wasPressed()) FloottyMod.INSTANCE.getHackList().teleport.toggle(false);
             if(toggleSprintKey.wasPressed()) FloottyMod.INSTANCE.getHackList().toggleSprint.toggle(false);
+            if(boatFlyKey.wasPressed()) FloottyMod.INSTANCE.getHackList().boatFly.toggle(false);
 
             if(antiHungerKey.wasPressed()) FloottyMod.INSTANCE.getHackList().antiHunger.toggle(false);
             if(fastBreakKey.wasPressed()) FloottyMod.INSTANCE.getHackList().fastBreak.toggle(false);
