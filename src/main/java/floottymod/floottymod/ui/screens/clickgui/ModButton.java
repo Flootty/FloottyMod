@@ -1,5 +1,6 @@
 package floottymod.floottymod.ui.screens.clickgui;
 
+import floottymod.floottymod.FloottyMod;
 import floottymod.floottymod.hack.Hack;
 import floottymod.floottymod.settings.BoolSetting;
 import floottymod.floottymod.settings.ModeSetting;
@@ -9,6 +10,7 @@ import floottymod.floottymod.ui.screens.clickgui.setting.CheckBox;
 import floottymod.floottymod.ui.screens.clickgui.setting.Component;
 import floottymod.floottymod.ui.screens.clickgui.setting.ModeBox;
 import floottymod.floottymod.ui.screens.clickgui.setting.Slider;
+import floottymod.floottymod.util.UIUtils;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -22,6 +24,8 @@ public class ModButton {
 	public int offset;
 	public List<Component> components;
 	public boolean extended;
+
+	private int color, bgColor;
 	
 	public ModButton(Hack hack, Frame parent, int offset) {
 		this.hack = hack;
@@ -29,6 +33,9 @@ public class ModButton {
 		this.offset = offset;
 		this.components = new ArrayList<>();
 		this.extended = false;
+
+		color = UIUtils.getColor();
+		bgColor = UIUtils.getBgColor();
 		
 		int setOffset = parent.height;
 		for(Setting s : hack.getSettings().values()) {
@@ -44,9 +51,9 @@ public class ModButton {
 	}
 	
 	public void render(MatrixStack matricies, int mouseX, int mouseY, float delta) {
-		DrawableHelper.fill(matricies, parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0, 0, 0, 160).getRGB());
-		if(isHovered(mouseX, mouseY)) DrawableHelper.fill(matricies, parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0, 0, 0, 180).getRGB());
-		parent.mc.textRenderer.draw(matricies, hack.getName(), parent.x + 5, parent.y + offset + 2 + parent.mc.textRenderer.fontHeight / 2, hack.isEnabled() ? Color.red.getRGB() : -1);
+		DrawableHelper.fill(matricies, parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, new Color(0, 0, 0, 160).getRGB()); //Background
+		if(isHovered(mouseX, mouseY)) DrawableHelper.fill(matricies, parent.x, parent.y + offset, parent.x + parent.width, parent.y + offset + parent.height, bgColor); //Hovered
+		parent.mc.textRenderer.draw(matricies, hack.getName(), parent.x + 5, parent.y + offset + 2 + parent.mc.textRenderer.fontHeight / 2, hack.isEnabled() ? color : -1); //Name
 		
 		if(extended) for(Component c : components) c.render(matricies, mouseX, mouseY, delta);
 	}
