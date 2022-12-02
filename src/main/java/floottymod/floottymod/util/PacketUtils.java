@@ -10,7 +10,9 @@ import net.minecraft.util.math.Vec3d;
 
 import static floottymod.floottymod.FloottyMod.MC;
 
-public class PacketUtils {
+public enum PacketUtils {
+    ;
+
     public static void sendPosition(Vec3d pos) {
         MinecraftClient MC = MinecraftClient.getInstance();
         ClientConnectionInvoker conn = (ClientConnectionInvoker) MC.player.networkHandler.getConnection();
