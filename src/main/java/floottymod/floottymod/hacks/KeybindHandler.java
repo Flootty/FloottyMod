@@ -114,7 +114,10 @@ public class KeybindHandler {
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if(menuKey.wasPressed()) FloottyMod.INSTANCE.MC.setScreen(ClickGui.INSTANCE);
+            if(menuKey.wasPressed()) {
+                ClickGui.INSTANCE.drawFrames = true;
+                FloottyMod.INSTANCE.MC.setScreen(ClickGui.INSTANCE);
+            }
 
             if(clickAuraKey.wasPressed()) FloottyMod.INSTANCE.getHackList().clickAura.toggle(false);
             if(criticalKey.wasPressed()) FloottyMod.INSTANCE.getHackList().critical.toggle(false);

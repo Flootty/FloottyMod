@@ -1,4 +1,4 @@
-package floottymod.floottymod.ui.screens.clickgui.setting;
+package floottymod.floottymod.ui.screens.clickgui;
 
 
 import floottymod.floottymod.setting.Setting;
@@ -8,18 +8,20 @@ import net.minecraft.client.util.math.MatrixStack;
 
 public class Component {
 	public Setting setting;
-	public ModButton parent;
-	public int offset;
+
+	public int x, y, width, height;
 	
 	protected MinecraftClient mc = MinecraftClient.getInstance();
 	
-	public Component(Setting setting, ModButton parent, int offset) {
+	public Component(Setting setting, int x, int y, int width, int height) {
 		this.setting = setting;
-		this.parent = parent;
-		this.offset = offset;
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
 	
-	public void render(MatrixStack matricies, int mouseX, int mouseY, float delta) {
+	public void render(MatrixStack matricies, int x, int y, int mouseX, int mouseY, float delta) {
 		
 	}
 	
@@ -30,8 +32,8 @@ public class Component {
 	public void mouseReleased(double mouseX, double mouseY, int button) {
 		
 	}
-	
+
 	public boolean isHovered(double mouseX, double mouseY) {
-		return mouseX > parent.parent.x && mouseX < parent.parent.x + parent.parent.width && mouseY > parent.parent.y + parent.offset + offset && mouseY < parent.parent.y + parent.offset + offset + parent.parent.height;
+		return mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height;
 	}
 }
