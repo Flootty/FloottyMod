@@ -26,8 +26,7 @@ public class Teleport extends Hack {
 
         double delta = calcDelta(lookVec);
 
-        MC.player.addVelocity(15, 15, 15);
-        PacketUtils.sendPosition(MC.player.getPos().add(lookVec.x * delta, lookVec.y * delta, lookVec.z * delta));
+        MC.player.setPosition(MC.player.getPos().add(lookVec.x * delta, lookVec.y * delta, lookVec.z * delta));
         setEnabled(false, true);
     }
 
