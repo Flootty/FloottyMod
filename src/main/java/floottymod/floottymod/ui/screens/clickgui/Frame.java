@@ -82,16 +82,4 @@ public class Frame {
 			y = (int) (mouseY - dragY);
 		}
 	}
-	
-	public void updateButtons() {
-		int offset = height;
-		for(ModButton b : buttons) {
-			b.offset = offset;
-			offset += height;
-			
-			if(b.extended) {
-				for(Component c : b.components) if(c.setting.isVisible()) offset += height;
-			}
-		}
-	}
 }
