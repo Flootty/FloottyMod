@@ -38,6 +38,7 @@ public class NightVision extends Hack implements TickListener {
 
     @Override
     public void onTick() {
+        if(MC.player == null) return;
         StatusEffectInstance effect = MC.player.getStatusEffect(StatusEffects.NIGHT_VISION);
         if(effect == null) MC.player.addStatusEffect(night_vision);
     }
