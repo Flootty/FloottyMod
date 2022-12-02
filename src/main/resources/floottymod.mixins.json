@@ -24,7 +24,8 @@
     "EntityMixin",
     "ClientPlayNetworkHandlerMixin",
     "CameraMixin",
-    "MouseMixin"
+    "MouseMixin",
+    "LivingEntityMixin"
   ],
   "client": [
   ],
