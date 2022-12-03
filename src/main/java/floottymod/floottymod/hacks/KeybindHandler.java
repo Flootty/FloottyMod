@@ -51,6 +51,7 @@ public class KeybindHandler {
     public static final String KEY_XRAY = "key.floottymod.xray";
     public static final String KEY_FREECAM = "key.floottymod.freecam";
     public static final String KEY_CHESTESP = "key.floottymod.chestesp";
+    public static final String KEY_OREESP = "key.floottymod.oreesp";
 
 
     public static KeyBinding menuKey = new KeyBinding(KEY_MENU, GLFW.GLFW_KEY_RIGHT_SHIFT, KEY_CATEGORY_FLOOTTYMOD);
@@ -81,7 +82,8 @@ public class KeybindHandler {
     public static KeyBinding hudKey = new KeyBinding(KEY_HUD, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding xRayKey = new KeyBinding(KEY_XRAY, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding freeCamKey = new KeyBinding(KEY_FREECAM, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
-    public static KeyBinding chestESPKey = new KeyBinding(KEY_CHESTESP, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
+    public static KeyBinding chestEspKey = new KeyBinding(KEY_CHESTESP, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
+    public static KeyBinding oreEspKey = new KeyBinding(KEY_OREESP, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
 
     public static KeyBinding[] keyBindings = {
             menuKey,
@@ -112,7 +114,8 @@ public class KeybindHandler {
             hudKey,
             xRayKey,
             freeCamKey,
-            chestESPKey
+            chestEspKey,
+            oreEspKey
     };
 
     public static void registerKeyInputs() {
@@ -148,7 +151,8 @@ public class KeybindHandler {
             if(hudKey.wasPressed()) FloottyMod.INSTANCE.getHackList().hud.toggle(false);
             if(xRayKey.wasPressed()) FloottyMod.INSTANCE.getHackList().xRay.toggle(false);
             if(freeCamKey.wasPressed()) FloottyMod.INSTANCE.getHackList().freeCam.toggle(false);
-            if(chestESPKey.wasPressed()) FloottyMod.INSTANCE.getHackList().chestEsp.toggle(false);
+            if(chestEspKey.wasPressed()) FloottyMod.INSTANCE.getHackList().chestEsp.toggle(false);
+            if(oreEspKey.wasPressed()) FloottyMod.INSTANCE.getHackList().oreEsp.toggle(false);
         });
     }
 

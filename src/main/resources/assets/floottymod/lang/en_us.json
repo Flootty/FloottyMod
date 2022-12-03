@@ -35,5 +35,6 @@
   "key.floottymod.hud": "Hud",
   "key.floottymod.xray": "XRay",
   "key.floottymod.freecam": "FreeCam",
-  "key.floottymod.chestesp": "ChestESP"
+  "key.floottymod.chestesp": "ChestEsp",
+  "key.floottymod.oreesp": "OreEsp"
 }

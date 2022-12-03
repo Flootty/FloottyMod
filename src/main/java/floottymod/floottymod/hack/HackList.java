@@ -42,6 +42,8 @@ public class HackList implements UpdateListener {
     public final Reach reach = new Reach();
     public final ChestEsp chestEsp = new ChestEsp();
 
+    public final OreEsp oreEsp = new OreEsp();
+
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
     private final EventManager eventManager = FloottyMod.INSTANCE.getEventManager();
@@ -72,6 +74,7 @@ public class HackList implements UpdateListener {
         addModule(tpAura);
         addModule(reach);
         addModule(chestEsp);
+        addModule(oreEsp);
 
         eventManager.add(UpdateListener.class, this);
     }
