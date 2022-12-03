@@ -33,6 +33,7 @@ public class KeybindHandler {
     public static final String KEY_AUTOFISH = "key.floottymod.autofish";
     public static final String KEY_ANTIAFK = "key.floottymod.antiafk";
     public static final String KEY_FORAGING = "key.floottymod.foraging";
+    public static final String KEY_MINING = "key.floottymod.mining";
 
     public static final String KEY_FLIGHT = "key.floottymod.flight";
     public static final String KEY_TELEPORT = "key.floottymod.teleport";
@@ -68,6 +69,7 @@ public class KeybindHandler {
     public static KeyBinding autoFishKey = new KeyBinding(KEY_AUTOFISH, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MACRO);
     public static KeyBinding antiAfkKey = new KeyBinding(KEY_ANTIAFK, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MACRO);
     public static KeyBinding foragingKey = new KeyBinding(KEY_FORAGING, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MACRO);
+    public static KeyBinding miningKey = new KeyBinding(KEY_MINING, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MACRO);
 
     public static KeyBinding flightKey = new KeyBinding(KEY_FLIGHT, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MOVEMENT);
     public static KeyBinding teleportKey = new KeyBinding(KEY_TELEPORT, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_MOVEMENT);
@@ -102,6 +104,7 @@ public class KeybindHandler {
             autoFishKey,
             antiAfkKey,
             foragingKey,
+            miningKey,
 
             flightKey,
             teleportKey,
@@ -141,6 +144,7 @@ public class KeybindHandler {
             if(autoFishKey.wasPressed()) FloottyMod.INSTANCE.getHackList().autoFish.toggle(false);
             if(antiAfkKey.wasPressed()) FloottyMod.INSTANCE.getHackList().antiAfk.toggle(false);
             if(foragingKey.wasPressed()) FloottyMod.INSTANCE.getHackList().foraging.toggle(false);
+            if(miningKey.wasPressed()) FloottyMod.INSTANCE.getHackList().mining.toggle(false);
 
             if(flightKey.wasPressed()) FloottyMod.INSTANCE.getHackList().flight.toggle(false);
             if(teleportKey.wasPressed()) FloottyMod.INSTANCE.getHackList().teleport.toggle(true);
