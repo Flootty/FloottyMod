@@ -31,7 +31,7 @@ public class HackList implements UpdateListener {
     public final Teleport teleport = new Teleport();
     public final NightVision nightVision = new NightVision();
     public final AntiHunger antiHunger = new AntiHunger();
-    public final XRay xRay = new XRay();
+    public final Xray xray = new Xray();
     public final Coordinates coordinates = new Coordinates();
     public final Hud hud = new Hud();
     public final CrystalAura crystalAura = new CrystalAura();
@@ -41,7 +41,6 @@ public class HackList implements UpdateListener {
     public final TpAura tpAura = new TpAura();
     public final Reach reach = new Reach();
     public final ChestEsp chestEsp = new ChestEsp();
-
     public final OreEsp oreEsp = new OreEsp();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
@@ -64,7 +63,7 @@ public class HackList implements UpdateListener {
         addModule(teleport);
         addModule(nightVision);
         addModule(antiHunger);
-        addModule(xRay);
+        addModule(xray);
         addModule(coordinates);
         addModule(hud);
         addModule(crystalAura);

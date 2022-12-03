@@ -80,7 +80,7 @@ public class KeybindHandler {
 
     public static KeyBinding coordinatesKey = new KeyBinding(KEY_COORDINATES, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding hudKey = new KeyBinding(KEY_HUD, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
-    public static KeyBinding xRayKey = new KeyBinding(KEY_XRAY, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
+    public static KeyBinding xrayKey = new KeyBinding(KEY_XRAY, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding freeCamKey = new KeyBinding(KEY_FREECAM, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding chestEspKey = new KeyBinding(KEY_CHESTESP, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding oreEspKey = new KeyBinding(KEY_OREESP, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
@@ -112,7 +112,7 @@ public class KeybindHandler {
 
             coordinatesKey,
             hudKey,
-            xRayKey,
+            xrayKey,
             freeCamKey,
             chestEspKey,
             oreEspKey
@@ -149,7 +149,7 @@ public class KeybindHandler {
 
             if(coordinatesKey.wasPressed()) FloottyMod.INSTANCE.getHackList().coordinates.toggle(false);
             if(hudKey.wasPressed()) FloottyMod.INSTANCE.getHackList().hud.toggle(false);
-            if(xRayKey.wasPressed()) FloottyMod.INSTANCE.getHackList().xRay.toggle(false);
+            if(xrayKey.wasPressed()) FloottyMod.INSTANCE.getHackList().xray.toggle(false);
             if(freeCamKey.wasPressed()) FloottyMod.INSTANCE.getHackList().freeCam.toggle(false);
             if(chestEspKey.wasPressed()) FloottyMod.INSTANCE.getHackList().chestEsp.toggle(false);
             if(oreEspKey.wasPressed()) FloottyMod.INSTANCE.getHackList().oreEsp.toggle(false);
