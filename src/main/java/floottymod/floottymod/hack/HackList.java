@@ -6,6 +6,7 @@ import floottymod.floottymod.events.UpdateListener;
 import floottymod.floottymod.hacks.combat.*;
 import floottymod.floottymod.hacks.macro.AntiAfk;
 import floottymod.floottymod.hacks.macro.AutoFish;
+import floottymod.floottymod.hacks.macro.Foraging;
 import floottymod.floottymod.hacks.movement.BoatFly;
 import floottymod.floottymod.hacks.movement.Flight;
 import floottymod.floottymod.hacks.movement.Teleport;
@@ -42,6 +43,7 @@ public class HackList implements UpdateListener {
     public final Reach reach = new Reach();
     public final ChestEsp chestEsp = new ChestEsp();
     public final OreEsp oreEsp = new OreEsp();
+    public final Foraging foraging = new Foraging();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -74,6 +76,7 @@ public class HackList implements UpdateListener {
         addModule(reach);
         addModule(chestEsp);
         addModule(oreEsp);
+        addModule(foraging);
 
         eventManager.add(UpdateListener.class, this);
     }
