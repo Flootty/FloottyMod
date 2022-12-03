@@ -34,6 +34,14 @@ public final class RotationFaker implements PreMotionListener, PostMotionListene
 		player.setPitch(realPitch);
 		fakeRotation = false;
 	}
+
+	public void faceVectorPacket(Vec3d vec) {
+		RotationUtils.Rotation rotations = RotationUtils.getNeededRotations(vec);
+
+		fakeRotation = true;
+		serverYaw = rotations.getYaw();
+		serverPitch = rotations.getPitch();
+	}
 	
 	public void faceVectorClient(Vec3d vec) {
 		RotationUtils.Rotation rotations = RotationUtils.getNeededRotations(vec);
