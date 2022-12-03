@@ -12,10 +12,7 @@ import floottymod.floottymod.hacks.movement.Teleport;
 import floottymod.floottymod.hacks.movement.ToggleSprint;
 import floottymod.floottymod.hacks.player.*;
 import floottymod.floottymod.hacks.qol.ReplaceCrop;
-import floottymod.floottymod.hacks.render.Coordinates;
-import floottymod.floottymod.hacks.render.FreeCam;
-import floottymod.floottymod.hacks.render.Hud;
-import floottymod.floottymod.hacks.render.XRay;
+import floottymod.floottymod.hacks.render.*;
 
 import java.nio.file.Path;
 import java.util.*;
@@ -43,6 +40,7 @@ public class HackList implements UpdateListener {
     public final BoatFly boatFly = new BoatFly();
     public final TpAura tpAura = new TpAura();
     public final Reach reach = new Reach();
+    public final ChestEsp chestEsp = new ChestEsp();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -73,6 +71,7 @@ public class HackList implements UpdateListener {
         addModule(boatFly);
         addModule(tpAura);
         addModule(reach);
+        addModule(chestEsp);
 
         eventManager.add(UpdateListener.class, this);
     }

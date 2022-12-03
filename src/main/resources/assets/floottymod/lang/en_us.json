@@ -34,5 +34,6 @@
   "key.floottymod.coordinates": "Coordinates",
   "key.floottymod.hud": "Hud",
   "key.floottymod.xray": "XRay",
-  "key.floottymod.freecam": "FreeCam"
+  "key.floottymod.freecam": "FreeCam",
+  "key.floottymod.chestesp": "ChestESP"
 }
