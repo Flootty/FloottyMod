@@ -12,6 +12,7 @@ import floottymod.floottymod.util.RotationUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
@@ -56,7 +57,8 @@ public class ClickAura extends Hack implements LeftClickListener {
 			.filter(e -> e instanceof LivingEntity && ((LivingEntity)e).getHealth() > 0)
 			.filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
 			.filter(e -> e != MC.player)
-			.filter(e -> !(e instanceof VillagerEntity));
+			.filter(e -> !(e instanceof VillagerEntity))
+			.filter(e -> !(e instanceof IronGolemEntity));;
 
 		if(targetTypes.isMode("Players")) stream = stream.filter(e -> (e instanceof PlayerEntity));
 		else if(targetTypes.isMode("Monsters")) stream = stream.filter(Predicate.not(e -> (e instanceof PlayerEntity))).filter(Predicate.not(e -> (e instanceof AnimalEntity)));
