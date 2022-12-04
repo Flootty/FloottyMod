@@ -22,7 +22,7 @@ public enum FloottyMod {
     public static final IMinecraftClient IMC = (IMinecraftClient)MC;
 
     public static final String name = "FloottyMod";
-    public static final String version = "1.4";
+    public static final String version = "1.5";
 
     private Path floottyFolder;
     private SettingsFile settingsFile;
