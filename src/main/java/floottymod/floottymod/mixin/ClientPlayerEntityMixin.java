@@ -1,14 +1,14 @@
 package floottymod.floottymod.mixin;
 
+import com.mojang.authlib.GameProfile;
 import floottymod.floottymod.FloottyMod;
-import floottymod.floottymod.event.Event;
 import floottymod.floottymod.event.EventManager;
 import floottymod.floottymod.events.DamageListener.DamageEvent;
+import floottymod.floottymod.events.IsPlayerInWaterListener.IsPlayerInWaterEvent;
 import floottymod.floottymod.events.KnockbackListener.KnockbackEvent;
 import floottymod.floottymod.events.PostMotionListener.PostMotionEvent;
 import floottymod.floottymod.events.PreMotionListener.PreMotionEvent;
 import floottymod.floottymod.events.UpdateListener.UpdateEvent;
-import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -43,6 +43,14 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 	private void applyDamage(DamageSource source, float amount, CallbackInfo ci) {
 		DamageEvent event = new DamageEvent(source);
 		EventManager.fire(event);
+	}
+
+	@Override
+	public boolean isTouchingWater() {
+		boolean inWater = super.isTouchingWater();
+		IsPlayerInWaterEvent event = new IsPlayerInWaterEvent(inWater);
+		EventManager.fire(event);
+		return event.isInWater();
 	}
 	
 	@Override

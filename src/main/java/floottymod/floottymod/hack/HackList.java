@@ -8,10 +8,7 @@ import floottymod.floottymod.hacks.macro.AntiAfk;
 import floottymod.floottymod.hacks.macro.AutoFish;
 import floottymod.floottymod.hacks.macro.Foraging;
 import floottymod.floottymod.hacks.macro.Mining;
-import floottymod.floottymod.hacks.movement.BoatFly;
-import floottymod.floottymod.hacks.movement.Flight;
-import floottymod.floottymod.hacks.movement.Teleport;
-import floottymod.floottymod.hacks.movement.ToggleSprint;
+import floottymod.floottymod.hacks.movement.*;
 import floottymod.floottymod.hacks.player.*;
 import floottymod.floottymod.hacks.qol.ReplaceCrop;
 import floottymod.floottymod.hacks.render.*;
@@ -47,6 +44,7 @@ public class HackList implements UpdateListener {
     public final OreEsp oreEsp = new OreEsp();
     public final Foraging foraging = new Foraging();
     public final Mining mining = new Mining();
+    public final CreativeFlight creativeFlight = new CreativeFlight();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -81,6 +79,7 @@ public class HackList implements UpdateListener {
         addModule(oreEsp);
         addModule(foraging);
         addModule(mining);
+        addModule(creativeFlight);
 
         eventManager.add(UpdateListener.class, this);
     }
