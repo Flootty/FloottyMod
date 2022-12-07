@@ -26,7 +26,7 @@ public class CreativeFlight extends Hack implements TickListener {
     @Override
     public void onEnable() {
         tickCounter = 0;
-        FloottyMod.INSTANCE.getHackList().flight.setEnabled(false, false);
+        FloottyMod.INSTANCE.getHackList().flight.setEnabled(false, true);
         EVENTS.add(TickListener.class, this);
     }
 

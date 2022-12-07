@@ -37,6 +37,7 @@ public class FastBreak extends Hack implements TickListener, BlockBreakingProgre
 
 	@Override
 	public void onTick() {
+		if(MC.player == null) return;
 		FloottyMod.IMC.getInteractionManager().setBlockHitDelay(0);
 	}
 	

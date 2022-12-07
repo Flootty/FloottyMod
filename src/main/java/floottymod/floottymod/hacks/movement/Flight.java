@@ -34,7 +34,7 @@ public class Flight extends Hack implements TickListener, IsPlayerInWaterListene
 	@Override
 	public void onEnable() {
 		tickCounter = 0;
-		FloottyMod.INSTANCE.getHackList().creativeFlight.setEnabled(false, false);
+		FloottyMod.INSTANCE.getHackList().creativeFlight.setEnabled(false, true);
 		EVENTS.add(TickListener.class, this);
 		EVENTS.add(IsPlayerInWaterListener.class, this);
 	}
