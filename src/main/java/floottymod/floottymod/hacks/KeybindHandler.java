@@ -49,6 +49,7 @@ public class KeybindHandler {
     public static final String KEY_NOKNOCKBACK = "key.floottymod.noknockback";
 
     public static final String KEY_REPLACECROP = "key.floottymod.replacecrop";
+    public static final String KEY_AUTOTOOL = "key.floottymod.autotool";
 
     public static final String KEY_COORDINATES = "key.floottymod.coordinates";
     public static final String KEY_HUD = "key.floottymod.hud";
@@ -85,6 +86,7 @@ public class KeybindHandler {
     public static KeyBinding noKnockbackKey = new KeyBinding(KEY_NOKNOCKBACK, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_PLAYER);
 
     public static KeyBinding replaceCropKey = new KeyBinding(KEY_REPLACECROP, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_QOL);
+    public static KeyBinding autoToolKey = new KeyBinding(KEY_AUTOTOOL, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_QOL);
 
     public static KeyBinding coordinatesKey = new KeyBinding(KEY_COORDINATES, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
     public static KeyBinding hudKey = new KeyBinding(KEY_HUD, UNKNOWN_KEY.getCode(), KEY_CATEGORY_FLOOTTYMOD_RENDER);
@@ -121,6 +123,7 @@ public class KeybindHandler {
             noKnockbackKey,
 
             replaceCropKey,
+            autoToolKey,
 
             coordinatesKey,
             hudKey,
@@ -162,6 +165,7 @@ public class KeybindHandler {
             if(noKnockbackKey.wasPressed()) FloottyMod.INSTANCE.getHackList().noKnockback.toggle(false);
 
             if(replaceCropKey.wasPressed()) FloottyMod.INSTANCE.getHackList().replaceCrop.toggle(false);
+            if(autoToolKey.wasPressed()) FloottyMod.INSTANCE.getHackList().autoTool.toggle(false);
 
             if(coordinatesKey.wasPressed()) FloottyMod.INSTANCE.getHackList().coordinates.toggle(false);
             if(hudKey.wasPressed()) FloottyMod.INSTANCE.getHackList().hud.toggle(false);

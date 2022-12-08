@@ -10,12 +10,15 @@ import floottymod.floottymod.hacks.macro.Foraging;
 import floottymod.floottymod.hacks.macro.Mining;
 import floottymod.floottymod.hacks.movement.*;
 import floottymod.floottymod.hacks.player.*;
+import floottymod.floottymod.hacks.qol.AutoTool;
 import floottymod.floottymod.hacks.qol.ReplaceCrop;
 import floottymod.floottymod.hacks.render.*;
-import net.minecraft.client.MinecraftClient;
 
 import java.nio.file.Path;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
 
 public class HackList implements UpdateListener {
     public final KillAura killAura = new KillAura();
@@ -45,6 +48,7 @@ public class HackList implements UpdateListener {
     public final Foraging foraging = new Foraging();
     public final Mining mining = new Mining();
     public final CreativeFlight creativeFlight = new CreativeFlight();
+    public final AutoTool autoTool = new AutoTool();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -80,6 +84,7 @@ public class HackList implements UpdateListener {
         addModule(foraging);
         addModule(mining);
         addModule(creativeFlight);
+        addModule(autoTool);
 
         eventManager.add(UpdateListener.class, this);
     }
