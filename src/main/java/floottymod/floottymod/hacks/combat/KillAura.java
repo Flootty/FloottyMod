@@ -18,6 +18,7 @@ import floottymod.floottymod.util.RotationUtils.Rotation;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
@@ -38,15 +39,18 @@ public class KillAura extends Hack implements TickListener, PostMotionListener {
 	public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
 	public SliderSetting delay = new SliderSetting("Delay", 5, 0, 20, 1);
 	public ModeSetting priority = new ModeSetting("Priority", "Distance", "Distance", "Angle", "Health");
+	public BoolSetting crit = new BoolSetting("Critical", true);
+	public BoolSetting name = new BoolSetting("Exclude NameTags", true);
 	public BoolSetting rotate = new BoolSetting("Rotate Client", false);
 	
 	private Entity target;
+	private Critical critical;
 
 	private int tickTimer;
 	
 	public KillAura() {
 		super("KillAura", Category.COMBAT);
-		addSettings(targetTypes, range, delay, priority, rotate);
+		addSettings(targetTypes, range, delay, priority, crit, name, rotate);
 		target = null;
 	}
 	
@@ -54,6 +58,7 @@ public class KillAura extends Hack implements TickListener, PostMotionListener {
 	public void onEnable() {
 		EVENTS.add(TickListener.class, this);
 		EVENTS.add(PostMotionListener.class, this);
+		critical = FloottyMod.INSTANCE.getHackList().critical;
 		tickTimer = 0;
 	}
 		
@@ -76,8 +81,11 @@ public class KillAura extends Hack implements TickListener, PostMotionListener {
 			.filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
 			.filter(e -> e != MC.player)
 			.filter(e -> !(e instanceof VillagerEntity))
-			.filter(e -> !(e instanceof IronGolemEntity));
-			
+			.filter(e -> !(e instanceof IronGolemEntity))
+			.filter(e -> !(e instanceof ArmorStandEntity));
+
+		if(name.isEnabled()) stream = stream.filter(e -> e.getCustomName() == null);
+
 		if(targetTypes.isMode("Players")) stream = stream.filter(e -> (e instanceof PlayerEntity));
 		else if(targetTypes.isMode("Monsters")) stream = stream.filter(Predicate.not(e -> (e instanceof PlayerEntity))).filter(Predicate.not(e -> (e instanceof AnimalEntity)));
 		else if(targetTypes.isMode("Animals")) stream = stream.filter(e -> (e instanceof AnimalEntity));
@@ -87,6 +95,7 @@ public class KillAura extends Hack implements TickListener, PostMotionListener {
 		else if(priority.isMode("Health")) target = stream.min((Priority.HEALTH.comparator)).orElse(null);
 
 		if(target != null) {
+			if(target.getCustomName() != null) target = null;
 			Rotation rotation = RotationUtils.getNeededRotations(target.getEyePos());
 			if(!rotate.isEnabled()) PacketUtils.sendRotation(rotation.getYaw(), rotation.getPitch());
 		}
@@ -100,6 +109,7 @@ public class KillAura extends Hack implements TickListener, PostMotionListener {
 
 		ClientPlayerEntity player = MC.player;
 		if(rotate.isEnabled()) FloottyMod.INSTANCE.getRotationFaker().faceVectorClient(target.getEyePos());
+		critical.doCritical();
 		MC.interactionManager.attackEntity(player, target);
 		player.swingHand(Hand.MAIN_HAND);
 		tickTimer = 0;

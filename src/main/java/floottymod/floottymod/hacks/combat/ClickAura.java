@@ -11,6 +11,7 @@ import floottymod.floottymod.util.PacketUtils;
 import floottymod.floottymod.util.RotationUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -27,19 +28,23 @@ public class ClickAura extends Hack implements LeftClickListener {
 	public SliderSetting range = new SliderSetting("Range", 4, 0, 6, 0.1);
 	public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
 	public ModeSetting priority = new ModeSetting("Priority", "Distance", "Distance", "Angle", "Health");
+	public BoolSetting crit = new BoolSetting("Critical", true);
+	public BoolSetting name = new BoolSetting("Exclude NameTags", true);
 	public BoolSetting rotate = new BoolSetting("Rotate Client", false);
 	
 	private Entity target;
+	private Critical critical;
 	
 	public ClickAura() {
 		super( "ClickAura", Category.COMBAT);
-		addSettings(targetTypes, range, priority, rotate);
+		addSettings(targetTypes, range, priority, crit, name, rotate);
 		target = null;
 	}
 	
 	@Override
 	public void onEnable() {
 		EVENTS.add(LeftClickListener.class, this);
+		critical = FloottyMod.INSTANCE.getHackList().critical;
 	}
 	
 	@Override
@@ -58,7 +63,10 @@ public class ClickAura extends Hack implements LeftClickListener {
 			.filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
 			.filter(e -> e != MC.player)
 			.filter(e -> !(e instanceof VillagerEntity))
-			.filter(e -> !(e instanceof IronGolemEntity));;
+			.filter(e -> !(e instanceof IronGolemEntity))
+			.filter(e -> !(e instanceof ArmorStandEntity));
+
+		if(name.isEnabled()) stream = stream.filter(e -> e.getCustomName() == null);
 
 		if(targetTypes.isMode("Players")) stream = stream.filter(e -> (e instanceof PlayerEntity));
 		else if(targetTypes.isMode("Monsters")) stream = stream.filter(Predicate.not(e -> (e instanceof PlayerEntity))).filter(Predicate.not(e -> (e instanceof AnimalEntity)));
@@ -75,7 +83,8 @@ public class ClickAura extends Hack implements LeftClickListener {
 			if(!rotate.isEnabled()) PacketUtils.sendRotation(rotation.getYaw(), rotation.getPitch());
 			if(rotate.isEnabled()) FloottyMod.INSTANCE.getRotationFaker().faceVectorClient(target.getEyePos());
 		}
-		
+
+		critical.doCritical();
 		MC.interactionManager.attackEntity(MC.player, target);
 		MC.player.swingHand(Hand.MAIN_HAND);
 

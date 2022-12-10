@@ -13,6 +13,7 @@ import floottymod.floottymod.util.RotationUtils;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -33,22 +34,26 @@ public class TpAura extends Hack implements TickListener {
     public ModeSetting targetTypes = new ModeSetting("Targets", "All", "All", "Players", "Monsters", "Animals");
     public SliderSetting delay = new SliderSetting("Delay", 5, 0, 20, 1);
     public ModeSetting priority = new ModeSetting("Priority", "Distance", "Distance", "Angle", "Health");
+    public BoolSetting crit = new BoolSetting("Critical", true);
+    public BoolSetting name = new BoolSetting("Exclude NameTags", true);
     public BoolSetting rotate = new BoolSetting("Rotate Client", false);
 
     private int tickTimer;
     private Entity target;
+    private Critical critical;
 
     private final Random random = new Random();
 
     public TpAura() {
         super("TpAura", Category.COMBAT);
-        addSettings(targetTypes, range, delay, priority, rotate);
+        addSettings(targetTypes, range, delay, priority, crit, name, rotate);
         target = null;
     }
 
     @Override
     public void onEnable() {
         EVENTS.add(TickListener.class, this);
+        critical = FloottyMod.INSTANCE.getHackList().critical;
         tickTimer = 0;
     }
 
@@ -70,7 +75,10 @@ public class TpAura extends Hack implements TickListener {
                 .filter(e -> MC.player.squaredDistanceTo(e) <= rangeSq)
                 .filter(e -> e != MC.player)
                 .filter(e -> !(e instanceof VillagerEntity))
-                .filter(e -> !(e instanceof IronGolemEntity));
+                .filter(e -> !(e instanceof IronGolemEntity))
+                .filter(e -> !(e instanceof ArmorStandEntity));
+
+        if(name.isEnabled()) stream = stream.filter(e -> e.getCustomName() == null);
 
         if(targetTypes.isMode("Players")) stream = stream.filter(e -> (e instanceof PlayerEntity));
         else if(targetTypes.isMode("Monsters")) stream = stream.filter(Predicate.not(e -> (e instanceof PlayerEntity))).filter(Predicate.not(e -> (e instanceof AnimalEntity)));
@@ -93,6 +101,7 @@ public class TpAura extends Hack implements TickListener {
         RotationUtils.Rotation rotations = RotationUtils.getNeededRotations(target.getEyePos());
         MC.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(rotations.getYaw(), rotations.getPitch(), MC.player.isOnGround()));
 
+        critical.doCritical();
         MC.interactionManager.attackEntity(MC.player, target);
         MC.player.swingHand(Hand.MAIN_HAND);
         tickTimer = 0;

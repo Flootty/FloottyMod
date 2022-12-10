@@ -38,7 +38,6 @@ public class Critical extends Hack implements LeftClickListener {
 
 	
 	public void doCritical() {
-		if(!isEnabled()) return;
 		if(!MC.player.isOnGround()) return;
 		if(MC.player.isTouchingWater() || MC.player.isInLava()) return;
 		switch (critType.getMode()) {
