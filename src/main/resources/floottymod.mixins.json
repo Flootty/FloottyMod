@@ -26,7 +26,9 @@
     "CameraMixin",
     "MouseMixin",
     "LivingEntityMixin",
-    "KeyBindingMixin"
+    "KeyBindingMixin",
+    "DisconnectedScreenMixin",
+    "MultiplayerScreenMixin"
   ],
   "client": [
   ],

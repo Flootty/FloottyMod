@@ -10,6 +10,7 @@ import floottymod.floottymod.hacks.macro.Foraging;
 import floottymod.floottymod.hacks.macro.Mining;
 import floottymod.floottymod.hacks.movement.*;
 import floottymod.floottymod.hacks.player.*;
+import floottymod.floottymod.hacks.qol.AutoReconnect;
 import floottymod.floottymod.hacks.qol.AutoTool;
 import floottymod.floottymod.hacks.qol.ReplaceCrop;
 import floottymod.floottymod.hacks.render.*;
@@ -49,6 +50,7 @@ public class HackList implements UpdateListener {
     public final Mining mining = new Mining();
     public final CreativeFlight creativeFlight = new CreativeFlight();
     public final AutoTool autoTool = new AutoTool();
+    public final AutoReconnect autoReconnect = new AutoReconnect();
 
     private final TreeMap<String, Hack> hacks = new TreeMap<>(String::compareToIgnoreCase);
     private final EnabledHacksFile enabledHacksFile;
@@ -85,6 +87,7 @@ public class HackList implements UpdateListener {
         addModule(mining);
         addModule(creativeFlight);
         addModule(autoTool);
+        addModule(autoReconnect);
 
         eventManager.add(UpdateListener.class, this);
     }
