@@ -14,6 +14,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -76,7 +77,8 @@ public class TpAura extends Hack implements TickListener {
                 .filter(e -> e != MC.player)
                 .filter(e -> !(e instanceof VillagerEntity))
                 .filter(e -> !(e instanceof IronGolemEntity))
-                .filter(e -> !(e instanceof ArmorStandEntity));
+                .filter(e -> !(e instanceof ArmorStandEntity))
+                .filter(e -> !(e instanceof AllayEntity));
 
         if(name.isEnabled()) stream = stream.filter(e -> e.getCustomName() == null);
 
